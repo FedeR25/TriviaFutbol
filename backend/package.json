@@ -1,0 +1,29 @@
+{
+  "name": "triviafutbol-backend",
+  "version": "1.0.0",
+  "description": "Backend de TriviaFutbol",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js",
+    "test": "jest --runInBand",
+    "test:unit": "jest tests/unit",
+    "test:int": "jest tests/integration",
+    "test:coverage": "jest --coverage",
+    "migrate": "node-pg-migrate up",
+    "migrate:down": "node-pg-migrate down",
+    "seed": "node src/db/seeds/run.js",
+    "lint": "eslint src/"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coverageThreshold": {
+      "global": {
+        "lines": 80
+      }
+    }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

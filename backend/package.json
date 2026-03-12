@@ -10,11 +10,13 @@
     "test:unit": "jest tests/unit",
     "test:int": "jest tests/integration",
     "test:coverage": "jest --coverage",
-    "migrate": "node-pg-migrate up",
-    "migrate:down": "node-pg-migrate down",
+    "migrate": "node-pg-migrate up --migrations-dir src/db/migrations",
+    "migrate:down": "node-pg-migrate down --migrations-dir src/db/migrations",
+    "migrate:create": "node-pg-migrate create --migrations-dir src/db/migrations",
     "seed": "node src/db/seeds/run.js",
     "lint": "eslint src/"
   },
+
   "jest": {
     "testEnvironment": "node",
     "coverageThreshold": {
@@ -23,6 +25,14 @@
       }
     }
   },
+  
+"node-pg-migrate": {
+  "migrationsDir": "src/db/migrations",
+  "databaseUrlEnvVar": "DATABASE_URL",
+  "dir": "src/db/migrations"
+},
+
+
   "keywords": [],
   "author": "",
   "license": "ISC"

@@ -1,0 +1,14 @@
+const { Pool } = require('pg');
+const { DATABASE_URL, NODE_ENV } = require('../config/env');
+
+const pool = new Pool({
+  connectionString: DATABASE_URL,
+  ssl: NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
+});
+
+pool.on('error', (err) => {
+  console.error('Error inesperado en el cliente PostgreSQL', err);
+  process.exit(-1);
+});
+
+module.exports = pool;

@@ -1,1 +1,5 @@
 {"level":"info","message":"🚀 Servidor corriendo en puerto 3000","timestamp":"2026-03-12T12:23:09.977Z"}
+{"level":"info","message":"🌱 Iniciando seed...","timestamp":"2026-03-12T13:01:51.599Z"}
+{"level":"info","message":"✅ 69 equipos insertados","timestamp":"2026-03-12T13:01:51.637Z"}
+{"level":"info","message":"✅ 30 jugadores insertados","timestamp":"2026-03-12T13:01:51.659Z"}
+{"level":"info","message":"🎉 Seed completado exitosamente","timestamp":"2026-03-12T13:01:51.660Z"}

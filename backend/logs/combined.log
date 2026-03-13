@@ -91,3 +91,28 @@
 {"level":"info","message":"✅ 142 equipos insertados","timestamp":"2026-03-13T17:48:54.127Z"}
 {"level":"info","message":"✅ 148 jugadores insertados","timestamp":"2026-03-13T17:48:54.282Z"}
 {"level":"info","message":"🎉 Seed completado exitosamente","timestamp":"2026-03-13T17:48:54.283Z"}
+{"level":"info","message":"🚀 Servidor corriendo en puerto 3000","timestamp":"2026-03-13T17:51:06.900Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/start","timestamp":"2026-03-13T17:51:14.795Z"}
+{"difficulty":"easy","level":"info","message":"game_started","mode":"players","sessionId":3,"timestamp":"2026-03-13T17:51:15.094Z","userId":1}
+{"level":"info","message":"request","method":"POST","path":"/api/game/3/answer","timestamp":"2026-03-13T17:51:18.068Z"}
+{"isCorrect":false,"level":"info","message":"answer_submitted","questionRefId":145,"responseTimeMs":2754,"sessionId":3,"timestamp":"2026-03-13T17:51:18.087Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/3/answer","timestamp":"2026-03-13T17:51:21.864Z"}
+{"isCorrect":true,"level":"info","message":"answer_submitted","questionRefId":65,"responseTimeMs":2571,"sessionId":3,"timestamp":"2026-03-13T17:51:21.881Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/3/answer","timestamp":"2026-03-13T17:51:25.982Z"}
+{"isCorrect":true,"level":"info","message":"answer_submitted","questionRefId":93,"responseTimeMs":2894,"sessionId":3,"timestamp":"2026-03-13T17:51:25.993Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/3/answer","timestamp":"2026-03-13T17:51:30.347Z"}
+{"isCorrect":true,"level":"info","message":"answer_submitted","questionRefId":142,"responseTimeMs":3147,"sessionId":3,"timestamp":"2026-03-13T17:51:30.358Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/3/answer","timestamp":"2026-03-13T17:51:33.747Z"}
+{"isCorrect":true,"level":"info","message":"answer_submitted","questionRefId":51,"responseTimeMs":2183,"sessionId":3,"timestamp":"2026-03-13T17:51:33.758Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/3/answer","timestamp":"2026-03-13T17:51:38.130Z"}
+{"isCorrect":false,"level":"info","message":"answer_submitted","questionRefId":59,"responseTimeMs":3166,"sessionId":3,"timestamp":"2026-03-13T17:51:38.141Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/3/answer","timestamp":"2026-03-13T17:51:41.899Z"}
+{"isCorrect":true,"level":"info","message":"answer_submitted","questionRefId":49,"responseTimeMs":2551,"sessionId":3,"timestamp":"2026-03-13T17:51:41.908Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/3/answer","timestamp":"2026-03-13T17:51:45.380Z"}
+{"isCorrect":false,"level":"info","message":"answer_submitted","questionRefId":109,"responseTimeMs":2265,"sessionId":3,"timestamp":"2026-03-13T17:51:45.399Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/3/answer","timestamp":"2026-03-13T17:51:51.033Z"}
+{"isCorrect":true,"level":"info","message":"answer_submitted","questionRefId":23,"responseTimeMs":4424,"sessionId":3,"timestamp":"2026-03-13T17:51:51.045Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/3/answer","timestamp":"2026-03-13T17:51:54.379Z"}
+{"isCorrect":true,"level":"info","message":"answer_submitted","questionRefId":87,"responseTimeMs":2127,"sessionId":3,"timestamp":"2026-03-13T17:51:54.394Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/3/finish","timestamp":"2026-03-13T17:51:55.600Z"}
+{"correctAnswers":7,"difficulty":"easy","level":"info","message":"game_finished","mode":"players","rankingPosition":1,"sessionId":3,"timestamp":"2026-03-13T17:51:55.618Z","totalTimeMs":55000,"userId":1}

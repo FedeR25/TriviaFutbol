@@ -4,8 +4,8 @@ const logger = require('../utils/logger');
 const COOKIE_OPTIONS = {
   httpOnly: true,
   secure: process.env.NODE_ENV === 'production',
-  sameSite: 'strict',
-  maxAge: 7 * 24 * 60 * 60 * 1000 // 7 días
+  sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
+  maxAge: 7 * 24 * 60 * 60 * 1000
 };
 
 const authController = {
@@ -26,7 +26,7 @@ const authController = {
       const { token, user } = await authService.login(username, password);
       res.cookie('token', token, COOKIE_OPTIONS);
       logger.info({ message: 'user_logged_in', userId: user.id, username });
-      res.json({ user });
+      res.json({ token, user });
     } catch (err) {
       logger.warn({ message: 'login_failed', username: req.body.username });
       next(err);

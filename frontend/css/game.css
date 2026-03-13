@@ -1,0 +1,208 @@
+/* ── GAME LAYOUT ── */
+body {
+  justify-content: flex-start;
+  padding: 0;
+}
+
+.game-header {
+  width: 100%;
+  background: var(--fondo-card);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.game-progress {
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--gris);
+}
+
+.game-score {
+  font-family: 'Fredoka One', cursive;
+  font-size: 22px;
+  color: var(--amarillo);
+}
+
+.timer-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.timer {
+  font-family: 'Fredoka One', cursive;
+  font-size: 28px;
+  color: var(--blanco);
+  transition: color 0.3s;
+}
+
+.timer.warning { color: var(--naranja); }
+.timer.danger  { color: var(--rojo); animation: pulse 0.5s infinite; }
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.08); }
+}
+
+/* ── QUESTION AREA ── */
+.game-body {
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.question-text {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(18px, 5vw, 24px);
+  text-align: center;
+}
+
+.question-image {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+  border-radius: var(--radio);
+  background: rgba(255,255,255,0.05);
+  padding: 12px;
+}
+
+.question-image.player-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+/* ── OPTIONS ── */
+.options-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.option-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  background: rgba(255,255,255,0.07);
+  border: 2px solid rgba(255,255,255,0.1);
+  border-radius: var(--radio-btn);
+  color: var(--blanco);
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: clamp(15px, 4vw, 18px);
+  padding: 14px 18px;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: left;
+}
+
+.option-btn:hover:not(:disabled) {
+  background: rgba(255,255,255,0.13);
+  border-color: var(--amarillo);
+  transform: translateX(4px);
+}
+
+.option-btn img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.option-btn.correct {
+  background: rgba(38,137,12,0.3);
+  border-color: var(--verde);
+  animation: correctAnim 0.4s ease;
+}
+
+.option-btn.wrong {
+  background: rgba(255,59,59,0.3);
+  border-color: var(--rojo);
+  animation: wrongAnim 0.4s ease;
+}
+
+.option-btn.reveal {
+  background: rgba(38,137,12,0.15);
+  border-color: var(--verde);
+  opacity: 0.6;
+}
+
+@keyframes correctAnim {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+@keyframes wrongAnim {
+  0%, 100% { transform: translateX(0); }
+  25%       { transform: translateX(-6px); }
+  75%       { transform: translateX(6px); }
+}
+
+/* ── FEEDBACK ── */
+.feedback {
+  font-family: 'Fredoka One', cursive;
+  font-size: 28px;
+  text-align: center;
+  min-height: 40px;
+  transition: all 0.2s;
+}
+
+.feedback.correct { color: var(--verde); }
+.feedback.wrong   { color: var(--rojo); }
+
+/* ── PENALTY TOAST ── */
+.penalty-toast {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px);
+  background: var(--rojo);
+  color: var(--blanco);
+  font-family: 'Fredoka One', cursive;
+  font-size: 20px;
+  padding: 10px 24px;
+  border-radius: 50px;
+  opacity: 0;
+  transition: all 0.3s;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.penalty-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── TIMED BAR ── */
+.timed-bar-wrap {
+  width: 100%;
+  height: 8px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.timed-bar {
+  height: 100%;
+  background: var(--verde);
+  transition: width 1s linear, background 0.3s;
+  border-radius: 4px;
+}
+
+.timed-bar.warning { background: var(--naranja); }
+.timed-bar.danger  { background: var(--rojo); }

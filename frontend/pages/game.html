@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jugando · TriviaFútbol</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/game.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="game-header">
+    <div class="game-progress" id="progressLabel">1 / 10</div>
+    <div class="timer-wrap">
+      <div class="timer" id="timer">0:00</div>
+      <div class="timed-bar-wrap" id="timedBarWrap" style="display:none; width:120px">
+        <div class="timed-bar" id="timedBar"></div>
+      </div>
+    </div>
+    <div class="game-score">⚽ <span id="scoreLabel">0</span></div>
+  </div>
+
+  <!-- PENALTY TOAST -->
+  <div class="penalty-toast" id="penaltyToast">-5 seg</div>
+
+  <!-- BODY -->
+  <div class="game-body">
+    <div class="question-text" id="questionText">Cargando...</div>
+    <img class="question-image" id="questionImage" src="" alt="pregunta">
+    <div class="feedback" id="feedback"></div>
+    <div class="options-grid" id="optionsGrid"></div>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/game.js"></script>
+</body>
+</html>

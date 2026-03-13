@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resultado · TriviaFútbol</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <style>
+    .result-icon {
+      font-size: 72px;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .result-score {
+      font-family: 'Fredoka One', cursive;
+      font-size: 56px;
+      text-align: center;
+      color: var(--amarillo);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .result-label {
+      text-align: center;
+      color: var(--gris);
+      font-size: 15px;
+      margin-bottom: 24px;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .stat-box {
+      background: rgba(255,255,255,0.06);
+      border-radius: var(--radio-btn);
+      padding: 16px;
+      text-align: center;
+    }
+    .stat-value {
+      font-family: 'Fredoka One', cursive;
+      font-size: 26px;
+      margin-bottom: 4px;
+    }
+    .stat-desc {
+      color: var(--gris);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .ranking-badge {
+      text-align: center;
+      font-family: 'Fredoka One', cursive;
+      font-size: 22px;
+      color: var(--amarillo);
+      margin-bottom: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="result-icon" id="resultIcon">⚽</div>
+    <div class="result-score" id="resultScore">0</div>
+    <div class="result-label" id="resultLabel">respuestas correctas</div>
+
+    <div class="stats-grid" id="statsGrid"></div>
+
+    <div class="ranking-badge" id="rankingBadge"></div>
+
+    <div class="btn-stack">
+      <button class="btn btn-verde" onclick="playAgain()">⚽ Revancha</button>
+      <a class="btn btn-azul" href="leaderboard.html">🏆 Ver ranking</a>
+      <a class="btn btn-ghost" href="index.html">← Inicio</a>
+    </div>
+  </div>
+
+  <script>
+    const data = JSON.parse(sessionStorage.getItem('lastResult') || '{}');
+    if (!data.correctAnswers === undefined) window.location.href = 'index.html';
+
+    const MODE_LABELS = {
+      teams: '🛡️ Equipos',
+      players: '⭐ Jugadores',
+      timed: '⏱️ Contra el Reloj'
+    };
+
+    const DIFF_LABELS = {
+      easy: '🟢 Juveniles',
+      hard: '🔴 Primera División'
+    };
+
+    // Ícono según puntaje
+    const pct = data.correctAnswers / (data.correctAnswers + data.wrongAnswers);
+    let icon = '😅';
+    if (pct >= 0.9) icon = '🏆';
+    else if (pct >= 0.7) icon = '🔥';
+    else if (pct >= 0.5) icon = '⚽';
+
+    document.getElementById('resultIcon').textContent = icon;
+    document.getElementById('resultScore').textContent = data.correctAnswers;
+
+    // Stats
+    const statsGrid = document.getElementById('statsGrid');
+    const stats = [
+      { value: data.wrongAnswers, desc: 'Errores', color: 'var(--rojo)' },
+      { value: data.rankingPosition ? `#${data.rankingPosition}` : '-', desc: 'Tu posición', color: 'var(--amarillo)' },
+    ];
+
+    if (data.mode !== 'timed') {
+      const totalSecs = Math.floor(data.totalTimeMs / 1000);
+      const m = Math.floor(totalSecs / 60);
+      const s = totalSecs % 60;
+      stats.unshift({ value: `${m}:${s.toString().padStart(2,'0')}`, desc: 'Tiempo total', color: 'var(--blanco)' });
+      if (data.penaltyMs) {
+        stats.push({ value: `+${data.penaltyMs / 1000}s`, desc: 'Penalización', color: 'var(--naranja)' });
+      }
+    }
+
+    statsGrid.innerHTML = stats.map(s =>
+      `<div class="stat-box">
+        <div class="stat-value" style="color:${s.color}">${s.value}</div>
+        <div class="stat-desc">${s.desc}</div>
+      </div>`
+    ).join('');
+
+    if (data.rankingPosition === 1) {
+      document.getElementById('rankingBadge').textContent = '🥇 ¡Sos el mejor!';
+    } else if (data.rankingPosition <= 3) {
+      document.getElementById('rankingBadge').textContent = `🏅 ¡Top ${data.rankingPosition}!`;
+    }
+
+    function playAgain() {
+      window.location.href = 'select-difficulty.html';
+    }
+  </script>
+</body>
+</html>

@@ -1,6 +1,7 @@
 const env = require('./config/env');
 const express = require('express');
 const helmet = require('helmet');
+const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const logger = require('./utils/logger');
 const errorHandler = require('./middlewares/errorHandler');
@@ -16,6 +17,12 @@ const app = express();
 // Seguridad
 app.use(helmet());
 app.disable('x-powered-by');
+
+// CORS
+app.use(cors({
+  origin: ['http://127.0.0.1:5500', 'http://localhost:5500'],
+  credentials: true,
+}));
 
 // Parsers
 app.use(express.json());

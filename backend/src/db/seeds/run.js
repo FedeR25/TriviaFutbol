@@ -15,7 +15,7 @@ const teams = [
   { name: 'Lanús', league: 'Liga Profesional', country: 'Argentina', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/lanus1520628875.png', external_id: 451 },
   { name: 'Belgrano', league: 'Liga Profesional', country: 'Argentina', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/belgrano1520628875.png', external_id: 452 },
   { name: 'Gimnasia LP', league: 'Liga Profesional', country: 'Argentina', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/gimnasia1520628875.png', external_id: 453 },
-  { name: 'Newell\'s Old Boys', league: 'Liga Profesional', country: 'Argentina', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/newells1520628875.png', external_id: 454 },
+  { name: "Newell's Old Boys", league: 'Liga Profesional', country: 'Argentina', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/newells1520628875.png', external_id: 454 },
   { name: 'Rosario Central', league: 'Liga Profesional', country: 'Argentina', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/rosario1520628875.png', external_id: 455 },
   { name: 'Argentinos Juniors', league: 'Liga Profesional', country: 'Argentina', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/argentinos1520628875.png', external_id: 456 },
   { name: 'Tigre', league: 'Liga Profesional', country: 'Argentina', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/tigre1520628875.png', external_id: 457 },
@@ -71,6 +71,7 @@ const teams = [
   { name: 'Osasuna', league: 'La Liga', country: 'España', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/osasuna1520628875.png', external_id: 501 },
   { name: 'Celta Vigo', league: 'La Liga', country: 'España', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/celta1520628875.png', external_id: 502 },
   { name: 'Getafe', league: 'La Liga', country: 'España', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/getafe1520628875.png', external_id: 503 },
+  { name: 'Girona', league: 'La Liga', country: 'España', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/girona1520628875.png', external_id: 589 },
   // España - Segunda
   { name: 'Sporting Gijon', league: 'La Liga 2', country: 'España', division: 'segunda', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/gijon1520628875.png', external_id: 504 },
   { name: 'Levante', league: 'La Liga 2', country: 'España', division: 'segunda', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/levante1520628875.png', external_id: 505 },
@@ -89,6 +90,11 @@ const teams = [
   { name: 'Brighton', league: 'Premier League', country: 'Inglaterra', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/brighton1520628875.png', external_id: 517 },
   { name: 'Everton', league: 'Premier League', country: 'Inglaterra', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/everton1520628875.png', external_id: 518 },
   { name: 'Leicester City', league: 'Premier League', country: 'Inglaterra', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/leicester1520628875.png', external_id: 519 },
+  { name: 'Fulham', league: 'Premier League', country: 'Inglaterra', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/fulham1520628875.png', external_id: 598 },
+  { name: 'Brentford', league: 'Premier League', country: 'Inglaterra', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/brentford1520628875.png', external_id: 599 },
+  { name: 'Crystal Palace', league: 'Premier League', country: 'Inglaterra', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/crystalpalace1520628875.png', external_id: 600 },
+  { name: 'Wolves', league: 'Premier League', country: 'Inglaterra', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/wolves1520628875.png', external_id: 601 },
+  { name: 'Nottingham Forest', league: 'Premier League', country: 'Inglaterra', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/nottinghamforest1520628875.png', external_id: 602 },
   // Inglaterra - Segunda
   { name: 'Leeds United', league: 'Championship', country: 'Inglaterra', division: 'segunda', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/leeds1520628875.png', external_id: 520 },
   { name: 'Sunderland', league: 'Championship', country: 'Inglaterra', division: 'segunda', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/sunderland1520628875.png', external_id: 521 },
@@ -136,6 +142,29 @@ const teams = [
   { name: 'Metz', league: 'Ligue 2', country: 'Francia', division: 'segunda', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/metz1520628875.png', external_id: 557 },
   { name: 'Caen', league: 'Ligue 2', country: 'Francia', division: 'segunda', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/caen1520628875.png', external_id: 558 },
   { name: 'Grenoble', league: 'Ligue 2', country: 'Francia', division: 'segunda', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/grenoble1520628875.png', external_id: 559 },
+  // MLS
+  { name: 'Inter Miami', league: 'MLS', country: 'USA', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/intermiam1520628875.png', external_id: 631 },
+  { name: 'LA Galaxy', league: 'MLS', country: 'USA', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/lagalaxy1520628875.png', external_id: 632 },
+  { name: 'Chicago Fire', league: 'MLS', country: 'USA', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/chicagofire1520628875.png', external_id: 633 },
+  { name: 'New York City FC', league: 'MLS', country: 'USA', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/nycfc1520628875.png', external_id: 634 },
+  // Saudi Pro League
+  { name: 'Al Nassr', league: 'Saudi Pro League', country: 'Arabia Saudita', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/alnassr1520628875.png', external_id: 635 },
+  { name: 'Al Hilal', league: 'Saudi Pro League', country: 'Arabia Saudita', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/alhilal1520628875.png', external_id: 636 },
+  { name: 'Al Ittihad', league: 'Saudi Pro League', country: 'Arabia Saudita', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/alittihad1520628875.png', external_id: 637 },
+  { name: 'Al Ahli', league: 'Saudi Pro League', country: 'Arabia Saudita', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/alahli1520628875.png', external_id: 638 },
+  { name: 'Al Qadsiah', league: 'Saudi Pro League', country: 'Arabia Saudita', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/alqadsiah1520628875.png', external_id: 639 },
+  { name: 'Al Ettifaq', league: 'Saudi Pro League', country: 'Arabia Saudita', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/aletifaq1520628875.png', external_id: 640 },
+  // Turquía
+  { name: 'Galatasaray', league: 'Süper Lig', country: 'Turquía', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/galatasaray1520628875.png', external_id: 641 },
+  { name: 'Fenerbahce', league: 'Süper Lig', country: 'Turquía', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/fenerbahce1520628875.png', external_id: 642 },
+  { name: 'Besiktas', league: 'Süper Lig', country: 'Turquía', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/besiktas1520628875.png', external_id: 643 },
+  // Países Bajos
+  { name: 'Ajax', league: 'Eredivisie', country: 'Países Bajos', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/ajax1520628875.png', external_id: 644 },
+  { name: 'PSV', league: 'Eredivisie', country: 'Países Bajos', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/psv1520628875.png', external_id: 645 },
+  { name: 'Feyenoord', league: 'Eredivisie', country: 'Países Bajos', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/feyenoord1520628875.png', external_id: 646 },
+  // Croacia
+  { name: 'Hajduk Split', league: 'HNL', country: 'Croacia', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/hajduk1520628875.png', external_id: 647 },
+  { name: 'Dinamo Zagreb', league: 'HNL', country: 'Croacia', division: 'primera', logo_url: 'https://www.thesportsdb.com/images/media/team/badge/dinamo1520628875.png', external_id: 648 },
 ];
 
 const players = [
@@ -147,13 +176,22 @@ const players = [
   { name: 'Enzo Fernandez', team_name: 'Chelsea', league: 'Premier League', country: 'Argentina', is_famous: true },
   { name: 'Alexis Mac Allister', team_name: 'Liverpool', league: 'Premier League', country: 'Argentina', is_famous: true },
   { name: 'Rodrigo De Paul', team_name: 'Atletico Madrid', league: 'La Liga', country: 'Argentina', is_famous: true },
-  { name: 'Angel Di Maria', team_name: 'Benfica', league: 'Primeira Liga', country: 'Argentina', is_famous: true },
-  { name: 'Sergio Aguero', team_name: 'Independiente', league: 'Liga Profesional', country: 'Argentina', is_famous: true },
-  { name: 'Nicolas Otamendi', team_name: 'Benfica', league: 'Primeira Liga', country: 'Argentina', is_famous: true },
   { name: 'Leandro Paredes', team_name: 'Roma', league: 'Serie A', country: 'Argentina', is_famous: true },
-  { name: 'Giovanni Lo Celso', team_name: 'Tottenham', league: 'Premier League', country: 'Argentina', is_famous: true },
+  { name: 'Giovanni Lo Celso', team_name: 'Villarreal', league: 'La Liga', country: 'Argentina', is_famous: true },
   { name: 'Alejandro Garnacho', team_name: 'Manchester United', league: 'Premier League', country: 'Argentina', is_famous: true },
   { name: 'Thiago Almada', team_name: 'Botafogo', league: 'Série A', country: 'Argentina', is_famous: true },
+  { name: 'Nicolas Gonzalez', team_name: 'Juventus', league: 'Serie A', country: 'Argentina', is_famous: true },
+  { name: 'Cristian Romero', team_name: 'Tottenham', league: 'Premier League', country: 'Argentina', is_famous: true },
+  { name: 'Lisandro Martinez', team_name: 'Manchester United', league: 'Premier League', country: 'Argentina', is_famous: true },
+  { name: 'Franco Armani', team_name: 'River Plate', league: 'Liga Profesional', country: 'Argentina', is_famous: true },
+  { name: 'Marcos Rojo', team_name: 'Boca Juniors', league: 'Liga Profesional', country: 'Argentina', is_famous: true },
+  { name: 'Exequiel Palacios', team_name: 'Bayer Leverkusen', league: 'Bundesliga', country: 'Argentina', is_famous: true },
+  { name: 'Nahuel Molina', team_name: 'Atletico Madrid', league: 'La Liga', country: 'Argentina', is_famous: true },
+  { name: 'German Pezzella', team_name: 'Betis', league: 'La Liga', country: 'Argentina', is_famous: true },
+  { name: 'Guido Rodriguez', team_name: 'Betis', league: 'La Liga', country: 'Argentina', is_famous: true },
+  { name: 'Valentin Carboni', team_name: 'Marseille', league: 'Ligue 1', country: 'Argentina', is_famous: true },
+  { name: 'Facundo Buonanotte', team_name: 'Brighton', league: 'Premier League', country: 'Argentina', is_famous: true },
+  { name: 'Sergio Romero', team_name: 'Boca Juniors', league: 'Liga Profesional', country: 'Argentina', is_famous: true },
   // Uruguay
   { name: 'Federico Valverde', team_name: 'Real Madrid', league: 'La Liga', country: 'Uruguay', is_famous: true },
   { name: 'Darwin Nunez', team_name: 'Liverpool', league: 'Premier League', country: 'Uruguay', is_famous: true },
@@ -161,10 +199,12 @@ const players = [
   { name: 'Edinson Cavani', team_name: 'Boca Juniors', league: 'Liga Profesional', country: 'Uruguay', is_famous: true },
   { name: 'Ronald Araujo', team_name: 'Barcelona', league: 'La Liga', country: 'Uruguay', is_famous: true },
   { name: 'Rodrigo Bentancur', team_name: 'Tottenham', league: 'Premier League', country: 'Uruguay', is_famous: true },
-  { name: 'Fede Valverde', team_name: 'Real Madrid', league: 'La Liga', country: 'Uruguay', is_famous: true },
+  { name: 'Jose Maria Gimenez', team_name: 'Atletico Madrid', league: 'La Liga', country: 'Uruguay', is_famous: true },
+  { name: 'Martin Caceres', team_name: 'Nacional', league: 'Primera División', country: 'Uruguay', is_famous: true },
+  { name: 'Matias Vecino', team_name: 'Lazio', league: 'Serie A', country: 'Uruguay', is_famous: true },
+  { name: 'Nahitan Nandez', team_name: 'Cagliari', league: 'Serie A', country: 'Uruguay', is_famous: true },
   // Brasil
   { name: 'Vinicius Jr', team_name: 'Real Madrid', league: 'La Liga', country: 'Brasil', is_famous: true },
-  { name: 'Neymar Jr', team_name: 'Al Hilal', league: 'Saudi Pro League', country: 'Brasil', is_famous: true },
   { name: 'Rodrygo', team_name: 'Real Madrid', league: 'La Liga', country: 'Brasil', is_famous: true },
   { name: 'Raphinha', team_name: 'Barcelona', league: 'La Liga', country: 'Brasil', is_famous: true },
   { name: 'Endrick', team_name: 'Real Madrid', league: 'La Liga', country: 'Brasil', is_famous: true },
@@ -175,6 +215,12 @@ const players = [
   { name: 'Marquinhos', team_name: 'PSG', league: 'Ligue 1', country: 'Brasil', is_famous: true },
   { name: 'Gabriel Martinelli', team_name: 'Arsenal', league: 'Premier League', country: 'Brasil', is_famous: true },
   { name: 'Gabriel Magalhaes', team_name: 'Arsenal', league: 'Premier League', country: 'Brasil', is_famous: true },
+  { name: 'Thiago Silva', team_name: 'Fluminense', league: 'Série A', country: 'Brasil', is_famous: true },
+  { name: 'Richarlison', team_name: 'Tottenham', league: 'Premier League', country: 'Brasil', is_famous: true },
+  { name: 'Antony', team_name: 'Manchester United', league: 'Premier League', country: 'Brasil', is_famous: true },
+  { name: 'Militao', team_name: 'Real Madrid', league: 'La Liga', country: 'Brasil', is_famous: true },
+  { name: 'Lucas Paqueta', team_name: 'West Ham', league: 'Premier League', country: 'Brasil', is_famous: true },
+  { name: 'Andreas Pereira', team_name: 'Fulham', league: 'Premier League', country: 'Brasil', is_famous: true },
   // España
   { name: 'Lamine Yamal', team_name: 'Barcelona', league: 'La Liga', country: 'España', is_famous: true },
   { name: 'Pedri', team_name: 'Barcelona', league: 'La Liga', country: 'España', is_famous: true },
@@ -184,6 +230,11 @@ const players = [
   { name: 'Ferran Torres', team_name: 'Barcelona', league: 'La Liga', country: 'España', is_famous: true },
   { name: 'Mikel Merino', team_name: 'Arsenal', league: 'Premier League', country: 'España', is_famous: true },
   { name: 'Fabian Ruiz', team_name: 'PSG', league: 'Ligue 1', country: 'España', is_famous: true },
+  { name: 'Sergio Ramos', team_name: 'Sevilla', league: 'La Liga', country: 'España', is_famous: true },
+  { name: 'Alvaro Morata', team_name: 'AC Milan', league: 'Serie A', country: 'España', is_famous: true },
+  { name: 'Dani Olmo', team_name: 'Barcelona', league: 'La Liga', country: 'España', is_famous: true },
+  { name: 'Mikel Oyarzabal', team_name: 'Real Sociedad', league: 'La Liga', country: 'España', is_famous: true },
+  { name: 'Eric Garcia', team_name: 'Girona', league: 'La Liga', country: 'España', is_famous: true },
   // Francia
   { name: 'Kylian Mbappé', team_name: 'Real Madrid', league: 'La Liga', country: 'Francia', is_famous: true },
   { name: 'Antoine Griezmann', team_name: 'Atletico Madrid', league: 'La Liga', country: 'Francia', is_famous: true },
@@ -193,6 +244,13 @@ const players = [
   { name: 'Eduardo Camavinga', team_name: 'Real Madrid', league: 'La Liga', country: 'Francia', is_famous: true },
   { name: 'Marcus Thuram', team_name: 'Inter Milan', league: 'Serie A', country: 'Francia', is_famous: true },
   { name: 'William Saliba', team_name: 'Arsenal', league: 'Premier League', country: 'Francia', is_famous: true },
+  { name: 'Kingsley Coman', team_name: 'Bayern Munich', league: 'Bundesliga', country: 'Francia', is_famous: true },
+  { name: 'Adrien Rabiot', team_name: 'Juventus', league: 'Serie A', country: 'Francia', is_famous: true },
+  { name: 'Benjamin Pavard', team_name: 'Inter Milan', league: 'Serie A', country: 'Francia', is_famous: true },
+  { name: 'Matteo Guendouzi', team_name: 'Lazio', league: 'Serie A', country: 'Francia', is_famous: true },
+  { name: 'Christopher Nkunku', team_name: 'Chelsea', league: 'Premier League', country: 'Francia', is_famous: true },
+  { name: 'Jonathan Clauss', team_name: 'Marseille', league: 'Ligue 1', country: 'Francia', is_famous: true },
+  { name: 'Karim Benzema', team_name: 'Al Ittihad', league: 'Saudi Pro League', country: 'Francia', is_famous: true },
   // Inglaterra
   { name: 'Jude Bellingham', team_name: 'Real Madrid', league: 'La Liga', country: 'Inglaterra', is_famous: true },
   { name: 'Harry Kane', team_name: 'Bayern Munich', league: 'Bundesliga', country: 'Inglaterra', is_famous: true },
@@ -201,17 +259,33 @@ const players = [
   { name: 'Marcus Rashford', team_name: 'Manchester United', league: 'Premier League', country: 'Inglaterra', is_famous: true },
   { name: 'Declan Rice', team_name: 'Arsenal', league: 'Premier League', country: 'Inglaterra', is_famous: true },
   { name: 'Trent Alexander-Arnold', team_name: 'Liverpool', league: 'Premier League', country: 'Inglaterra', is_famous: true },
+  { name: 'Raheem Sterling', team_name: 'Arsenal', league: 'Premier League', country: 'Inglaterra', is_famous: true },
+  { name: 'Jack Grealish', team_name: 'Manchester City', league: 'Premier League', country: 'Inglaterra', is_famous: true },
+  { name: 'Mason Mount', team_name: 'Manchester United', league: 'Premier League', country: 'Inglaterra', is_famous: true },
+  { name: 'Conor Gallagher', team_name: 'Atletico Madrid', league: 'La Liga', country: 'Inglaterra', is_famous: true },
+  { name: 'Reece James', team_name: 'Chelsea', league: 'Premier League', country: 'Inglaterra', is_famous: true },
+  { name: 'Luke Shaw', team_name: 'Manchester United', league: 'Premier League', country: 'Inglaterra', is_famous: true },
   // Alemania
   { name: 'Florian Wirtz', team_name: 'Bayer Leverkusen', league: 'Bundesliga', country: 'Alemania', is_famous: true },
   { name: 'Jamal Musiala', team_name: 'Bayern Munich', league: 'Bundesliga', country: 'Alemania', is_famous: true },
   { name: 'Leroy Sane', team_name: 'Bayern Munich', league: 'Bundesliga', country: 'Alemania', is_famous: true },
   { name: 'Kai Havertz', team_name: 'Arsenal', league: 'Premier League', country: 'Alemania', is_famous: true },
   { name: 'Toni Kroos', team_name: 'Real Madrid', league: 'La Liga', country: 'Alemania', is_famous: true },
+  { name: 'Thomas Muller', team_name: 'Bayern Munich', league: 'Bundesliga', country: 'Alemania', is_famous: true },
+  { name: 'Manuel Neuer', team_name: 'Bayern Munich', league: 'Bundesliga', country: 'Alemania', is_famous: true },
+  { name: 'Leon Goretzka', team_name: 'Bayern Munich', league: 'Bundesliga', country: 'Alemania', is_famous: true },
+  { name: 'Ilkay Gundogan', team_name: 'Barcelona', league: 'La Liga', country: 'Alemania', is_famous: true },
+  { name: 'Joshua Kimmich', team_name: 'Bayern Munich', league: 'Bundesliga', country: 'Alemania', is_famous: true },
+  { name: 'Antonio Rudiger', team_name: 'Real Madrid', league: 'La Liga', country: 'Alemania', is_famous: true },
+  { name: 'Nico Schlotterbeck', team_name: 'Borussia Dortmund', league: 'Bundesliga', country: 'Alemania', is_famous: true },
   // Italia
   { name: 'Federico Chiesa', team_name: 'Liverpool', league: 'Premier League', country: 'Italia', is_famous: true },
   { name: 'Gianluigi Donnarumma', team_name: 'PSG', league: 'Ligue 1', country: 'Italia', is_famous: true },
   { name: 'Nicolo Barella', team_name: 'Inter Milan', league: 'Serie A', country: 'Italia', is_famous: true },
   { name: 'Sandro Tonali', team_name: 'Newcastle', league: 'Premier League', country: 'Italia', is_famous: true },
+  { name: 'Lorenzo Pellegrini', team_name: 'Roma', league: 'Serie A', country: 'Italia', is_famous: true },
+  { name: 'Alessandro Bastoni', team_name: 'Inter Milan', league: 'Serie A', country: 'Italia', is_famous: true },
+  { name: 'Giacomo Raspadori', team_name: 'Napoli', league: 'Serie A', country: 'Italia', is_famous: true },
   // Portugal
   { name: 'Cristiano Ronaldo', team_name: 'Al Nassr', league: 'Saudi Pro League', country: 'Portugal', is_famous: true },
   { name: 'Bruno Fernandes', team_name: 'Manchester United', league: 'Premier League', country: 'Portugal', is_famous: true },
@@ -219,11 +293,18 @@ const players = [
   { name: 'Ruben Dias', team_name: 'Manchester City', league: 'Premier League', country: 'Portugal', is_famous: true },
   { name: 'Bernardo Silva', team_name: 'Manchester City', league: 'Premier League', country: 'Portugal', is_famous: true },
   { name: 'Joao Felix', team_name: 'Chelsea', league: 'Premier League', country: 'Portugal', is_famous: true },
+  { name: 'Joao Cancelo', team_name: 'Barcelona', league: 'La Liga', country: 'Portugal', is_famous: true },
+  { name: 'Diogo Jota', team_name: 'Liverpool', league: 'Premier League', country: 'Portugal', is_famous: true },
+  { name: 'Andre Silva', team_name: 'RB Leipzig', league: 'Bundesliga', country: 'Portugal', is_famous: true },
+  { name: 'Vitinha', team_name: 'PSG', league: 'Ligue 1', country: 'Portugal', is_famous: true },
+  { name: 'Nuno Mendes', team_name: 'PSG', league: 'Ligue 1', country: 'Portugal', is_famous: true },
   // Noruega
   { name: 'Erling Haaland', team_name: 'Manchester City', league: 'Premier League', country: 'Noruega', is_famous: true },
   // Bélgica
   { name: 'Kevin De Bruyne', team_name: 'Manchester City', league: 'Premier League', country: 'Bélgica', is_famous: true },
   { name: 'Romelu Lukaku', team_name: 'Napoli', league: 'Serie A', country: 'Bélgica', is_famous: true },
+  { name: 'Loïs Openda', team_name: 'RB Leipzig', league: 'Bundesliga', country: 'Bélgica', is_famous: true },
+  { name: 'Yannick Carrasco', team_name: 'Al Qadsiah', league: 'Saudi Pro League', country: 'Bélgica', is_famous: true },
   // Polonia
   { name: 'Robert Lewandowski', team_name: 'Barcelona', league: 'La Liga', country: 'Polonia', is_famous: true },
   // Nigeria
@@ -241,109 +322,24 @@ const players = [
   { name: 'Virgil van Dijk', team_name: 'Liverpool', league: 'Premier League', country: 'Países Bajos', is_famous: true },
   { name: 'Frenkie de Jong', team_name: 'Barcelona', league: 'La Liga', country: 'Países Bajos', is_famous: true },
   { name: 'Cody Gakpo', team_name: 'Liverpool', league: 'Premier League', country: 'Países Bajos', is_famous: true },
-// Más Argentina
-  { name: 'Franco Armani', team_name: 'River Plate', league: 'Liga Profesional', country: 'Argentina', is_famous: true },
-  { name: 'Marcos Rojo', team_name: 'Boca Juniors', league: 'Liga Profesional', country: 'Argentina', is_famous: true },
-  { name: 'Nicolas Gonzalez', team_name: 'Juventus', league: 'Serie A', country: 'Argentina', is_famous: true },
-  { name: 'Exequiel Palacios', team_name: 'Bayer Leverkusen', league: 'Bundesliga', country: 'Argentina', is_famous: true },
-  { name: 'Nahuel Molina', team_name: 'Atletico Madrid', league: 'La Liga', country: 'Argentina', is_famous: true },
-  { name: 'Cristian Romero', team_name: 'Tottenham', league: 'Premier League', country: 'Argentina', is_famous: true },
-  { name: 'Lisandro Martinez', team_name: 'Manchester United', league: 'Premier League', country: 'Argentina', is_famous: true },
-  { name: 'Gerardo Morales', team_name: 'Racing Club', league: 'Liga Profesional', country: 'Argentina', is_famous: false },
-  { name: 'German Pezzella', team_name: 'Betis', league: 'La Liga', country: 'Argentina', is_famous: true },
-  { name: 'Guido Rodriguez', team_name: 'Betis', league: 'La Liga', country: 'Argentina', is_famous: true },
-  { name: 'Valentin Carboni', team_name: 'Marseille', league: 'Ligue 1', country: 'Argentina', is_famous: true },
-  { name: 'Facundo Buonanotte', team_name: 'Brighton', league: 'Premier League', country: 'Argentina', is_famous: true },
-  { name: 'Mauro Icardi', team_name: 'Galatasaray', league: 'Süper Lig', country: 'Argentina', is_famous: true },
-  { name: 'Sergio Romero', team_name: 'Boca Juniors', league: 'Liga Profesional', country: 'Argentina', is_famous: true },
-  // Más Uruguay
-  { name: 'Jose Maria Gimenez', team_name: 'Atletico Madrid', league: 'La Liga', country: 'Uruguay', is_famous: true },
-  { name: 'Martin Caceres', team_name: 'Nacional', league: 'Primera División', country: 'Uruguay', is_famous: true },
-  { name: 'Edinson Cavani', team_name: 'Boca Juniors', league: 'Liga Profesional', country: 'Uruguay', is_famous: true },
-  { name: 'Matias Vecino', team_name: 'Lazio', league: 'Serie A', country: 'Uruguay', is_famous: true },
-  { name: 'Nahitan Nandez', team_name: 'Cagliari', league: 'Serie A', country: 'Uruguay', is_famous: true },
-  { name: 'Maxi Gomez', team_name: 'Fenerbahce', league: 'Süper Lig', country: 'Uruguay', is_famous: true },
-  // Más Brasil
-  { name: 'Thiago Silva', team_name: 'Fluminense', league: 'Série A', country: 'Brasil', is_famous: true },
-  { name: 'Richarlison', team_name: 'Tottenham', league: 'Premier League', country: 'Brasil', is_famous: true },
-  { name: 'Fred', team_name: 'Manchester United', league: 'Premier League', country: 'Brasil', is_famous: true },
-  { name: 'Fabinho', team_name: 'Al Ittihad', league: 'Saudi Pro League', country: 'Brasil', is_famous: true },
-  { name: 'Roberto Firmino', team_name: 'Al Ahli', league: 'Saudi Pro League', country: 'Brasil', is_famous: true },
-  { name: 'Antony', team_name: 'Manchester United', league: 'Premier League', country: 'Brasil', is_famous: true },
-  { name: 'Militao', team_name: 'Real Madrid', league: 'La Liga', country: 'Brasil', is_famous: true },
-  { name: 'Lucas Paqueta', team_name: 'West Ham', league: 'Premier League', country: 'Brasil', is_famous: true },
-  { name: 'Andreas Pereira', team_name: 'Fulham', league: 'Premier League', country: 'Brasil', is_famous: true },
-  { name: 'Danilo', team_name: 'Juventus', league: 'Serie A', country: 'Brasil', is_famous: true },
-  // Más España
-  { name: 'Sergio Ramos', team_name: 'Sevilla', league: 'La Liga', country: 'España', is_famous: true },
-  { name: 'Marco Asensio', team_name: 'Aston Villa', league: 'Premier League', country: 'España', is_famous: true },
-  { name: 'Alvaro Morata', team_name: 'AC Milan', league: 'Serie A', country: 'España', is_famous: true },
-  { name: 'Dani Olmo', team_name: 'Barcelona', league: 'La Liga', country: 'España', is_famous: true },
-  { name: 'Mikel Oyarzabal', team_name: 'Real Sociedad', league: 'La Liga', country: 'España', is_famous: true },
-  { name: 'Joselu', team_name: 'Real Madrid', league: 'La Liga', country: 'España', is_famous: true },
-  { name: 'Eric Garcia', team_name: 'Girona', league: 'La Liga', country: 'España', is_famous: true },
-  // Más Francia
-  { name: 'Raphael Varane', team_name: 'Manchester United', league: 'Premier League', country: 'Francia', is_famous: true },
-  { name: 'Kingsley Coman', team_name: 'Bayern Munich', league: 'Bundesliga', country: 'Francia', is_famous: true },
-  { name: 'Adrien Rabiot', team_name: 'Juventus', league: 'Serie A', country: 'Francia', is_famous: true },
-  { name: 'Benjamin Pavard', team_name: 'Inter Milan', league: 'Serie A', country: 'Francia', is_famous: true },
-  { name: 'Matteo Guendouzi', team_name: 'Lazio', league: 'Serie A', country: 'Francia', is_famous: true },
-  { name: 'Christopher Nkunku', team_name: 'Chelsea', league: 'Premier League', country: 'Francia', is_famous: true },
-  { name: 'Jonathan Clauss', team_name: 'Marseille', league: 'Ligue 1', country: 'Francia', is_famous: true },
-  // Más Inglaterra
-  { name: 'Jordan Henderson', team_name: 'Ajax', league: 'Eredivisie', country: 'Inglaterra', is_famous: true },
-  { name: 'Raheem Sterling', team_name: 'Arsenal', league: 'Premier League', country: 'Inglaterra', is_famous: true },
-  { name: 'Jack Grealish', team_name: 'Manchester City', league: 'Premier League', country: 'Inglaterra', is_famous: true },
-  { name: 'Mason Mount', team_name: 'Manchester United', league: 'Premier League', country: 'Inglaterra', is_famous: true },
-  { name: 'Conor Gallagher', team_name: 'Atletico Madrid', league: 'La Liga', country: 'Inglaterra', is_famous: true },
-  { name: 'Ivan Toney', team_name: 'Al Ahli', league: 'Saudi Pro League', country: 'Inglaterra', is_famous: true },
-  { name: 'Reece James', team_name: 'Chelsea', league: 'Premier League', country: 'Inglaterra', is_famous: true },
-  { name: 'Luke Shaw', team_name: 'Manchester United', league: 'Premier League', country: 'Inglaterra', is_famous: true },
-  // Más Alemania
-  { name: 'Thomas Muller', team_name: 'Bayern Munich', league: 'Bundesliga', country: 'Alemania', is_famous: true },
-  { name: 'Manuel Neuer', team_name: 'Bayern Munich', league: 'Bundesliga', country: 'Alemania', is_famous: true },
-  { name: 'Leon Goretzka', team_name: 'Bayern Munich', league: 'Bundesliga', country: 'Alemania', is_famous: true },
-  { name: 'Marco Reus', team_name: 'Borussia Dortmund', league: 'Bundesliga', country: 'Alemania', is_famous: true },
-  { name: 'Ilkay Gundogan', team_name: 'Barcelona', league: 'La Liga', country: 'Alemania', is_famous: true },
-  { name: 'Joshua Kimmich', team_name: 'Bayern Munich', league: 'Bundesliga', country: 'Alemania', is_famous: true },
-  { name: 'Antonio Rudiger', team_name: 'Real Madrid', league: 'La Liga', country: 'Alemania', is_famous: true },
-  { name: 'Nico Schlotterbeck', team_name: 'Borussia Dortmund', league: 'Bundesliga', country: 'Alemania', is_famous: true },
-  // Más Italia
-  { name: 'Lorenzo Pellegrini', team_name: 'Roma', league: 'Serie A', country: 'Italia', is_famous: true },
-  { name: 'Ciro Immobile', team_name: 'Besiktas', league: 'Süper Lig', country: 'Italia', is_famous: true },
-  { name: 'Leonardo Bonucci', team_name: 'Fenerbahce', league: 'Süper Lig', country: 'Italia', is_famous: true },
-  { name: 'Marco Verratti', team_name: 'Al Arabi', league: 'Qatar Stars League', country: 'Italia', is_famous: true },
-  { name: 'Alessandro Bastoni', team_name: 'Inter Milan', league: 'Serie A', country: 'Italia', is_famous: true },
-  { name: 'Giacomo Raspadori', team_name: 'Napoli', league: 'Serie A', country: 'Italia', is_famous: true },
-  // Más Portugal
-  { name: 'Joao Cancelo', team_name: 'Barcelona', league: 'La Liga', country: 'Portugal', is_famous: true },
-  { name: 'Diogo Jota', team_name: 'Liverpool', league: 'Premier League', country: 'Portugal', is_famous: true },
-  { name: 'Andre Silva', team_name: 'RB Leipzig', league: 'Bundesliga', country: 'Portugal', is_famous: true },
-  { name: 'Vitinha', team_name: 'PSG', league: 'Ligue 1', country: 'Portugal', is_famous: true },
-  { name: 'Nuno Mendes', team_name: 'PSG', league: 'Ligue 1', country: 'Portugal', is_famous: true },
-  // Otros países famosos
-  { name: 'Son Heung-min', team_name: 'Tottenham', league: 'Premier League', country: 'Corea del Sur', is_famous: true },
-  { name: 'Karim Benzema', team_name: 'Al Ittihad', league: 'Saudi Pro League', country: 'Francia', is_famous: true },
-  { name: 'Riyad Mahrez', team_name: 'Al Ahli', league: 'Saudi Pro League', country: 'Argelia', is_famous: true },
-  { name: 'Ivan Perisic', team_name: 'Hajduk Split', league: 'HNL', country: 'Croacia', is_famous: true },
-  { name: 'Marcelo Brozovic', team_name: 'Al Nassr', league: 'Saudi Pro League', country: 'Croacia', is_famous: true },
+  { name: 'Memphis Depay', team_name: 'Atletico Madrid', league: 'La Liga', country: 'Países Bajos', is_famous: true },
+  // Marruecos
   { name: 'Achraf Hakimi', team_name: 'PSG', league: 'Ligue 1', country: 'Marruecos', is_famous: true },
   { name: 'Hakim Ziyech', team_name: 'Galatasaray', league: 'Süper Lig', country: 'Marruecos', is_famous: true },
   { name: 'Yassine Bounou', team_name: 'Al Hilal', league: 'Saudi Pro League', country: 'Marruecos', is_famous: true },
-  { name: 'Memphis Depay', team_name: 'Atletico Madrid', league: 'La Liga', country: 'Países Bajos', is_famous: true },
-  { name: 'Georginio Wijnaldum', team_name: 'Al Ettifaq', league: 'Saudi Pro League', country: 'Países Bajos', is_famous: true },
-  { name: 'Franck Kessie', team_name: 'Al Ahli', league: 'Saudi Pro League', country: 'Costa de Marfil', is_famous: true },
-  { name: 'Wilfried Zaha', team_name: 'Galatasaray', league: 'Süper Lig', country: 'Costa de Marfil', is_famous: true },
-  { name: 'Yannick Carrasco', team_name: 'Al Qadsiah', league: 'Saudi Pro League', country: 'Bélgica', is_famous: true },
-  { name: 'Romelu Lukaku', team_name: 'Napoli', league: 'Serie A', country: 'Bélgica', is_famous: true },
-  { name: 'Loïs Openda', team_name: 'RB Leipzig', league: 'Bundesliga', country: 'Bélgica', is_famous: true },
-  { name: 'Granit Xhaka', team_name: 'Bayer Leverkusen', league: 'Bundesliga', country: 'Suiza', is_famous: true },
-  { name: 'Xherdan Shaqiri', team_name: 'Chicago Fire', league: 'MLS', country: 'Suiza', is_famous: true },
+  // Serbia
   { name: 'Dusan Vlahovic', team_name: 'Juventus', league: 'Serie A', country: 'Serbia', is_famous: true },
   { name: 'Sergej Milinkovic-Savic', team_name: 'Al Hilal', league: 'Saudi Pro League', country: 'Serbia', is_famous: true },
+  // Suiza
+  { name: 'Granit Xhaka', team_name: 'Bayer Leverkusen', league: 'Bundesliga', country: 'Suiza', is_famous: true },
+  { name: 'Xherdan Shaqiri', team_name: 'Chicago Fire', league: 'MLS', country: 'Suiza', is_famous: true },
+  // Camerún
   { name: 'Andre Onana', team_name: 'Manchester United', league: 'Premier League', country: 'Camerún', is_famous: true },
+  // México
   { name: 'Hirving Lozano', team_name: 'PSV', league: 'Eredivisie', country: 'México', is_famous: true },
   { name: 'Raul Jimenez', team_name: 'Fulham', league: 'Premier League', country: 'México', is_famous: true },
+  // Corea del Sur
+  { name: 'Son Heung-min', team_name: 'Tottenham', league: 'Premier League', country: 'Corea del Sur', is_famous: true },
 ];
 
 async function seed() {
@@ -352,7 +348,6 @@ async function seed() {
     await client.query('BEGIN');
     logger.info('🌱 Iniciando seed...');
 
-    // Insertar equipos
     for (const team of teams) {
       await client.query(
         `INSERT INTO teams (name, league, country, division, logo_url, external_id)
@@ -368,7 +363,6 @@ async function seed() {
     }
     logger.info(`✅ ${teams.length} equipos insertados`);
 
-    // Insertar jugadores
     for (const player of players) {
       const teamResult = await client.query(
         'SELECT id FROM teams WHERE name = $1',
@@ -385,7 +379,7 @@ async function seed() {
     }
     logger.info(`✅ ${players.length} jugadores insertados`);
 
-await client.query('COMMIT');
+    await client.query('COMMIT');
     logger.info('🎉 Seed completado exitosamente');
   } catch (err) {
     await client.query('ROLLBACK');

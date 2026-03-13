@@ -38,3 +38,56 @@
 {"level":"info","message":"🚀 Servidor corriendo en puerto 3000","timestamp":"2026-03-13T13:17:50.814Z"}
 {"level":"info","message":"request","method":"POST","path":"/api/game/start","timestamp":"2026-03-13T13:18:12.637Z"}
 {"difficulty":"easy","level":"info","message":"game_started","mode":"teams","sessionId":1,"timestamp":"2026-03-13T13:18:12.670Z","userId":1}
+{"level":"info","message":"🚀 Servidor corriendo en puerto 3000","timestamp":"2026-03-13T17:08:19.536Z"}
+{"level":"info","message":"request","method":"GET","path":"/api/auth/me","timestamp":"2026-03-13T17:08:44.756Z"}
+{"level":"info","message":"request","method":"GET","path":"/api/auth/me","timestamp":"2026-03-13T17:08:52.311Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/auth/login","timestamp":"2026-03-13T17:08:59.462Z"}
+{"level":"info","message":"user_logged_in","timestamp":"2026-03-13T17:08:59.845Z","userId":1,"username":"mateo99"}
+{"level":"info","message":"request","method":"GET","path":"/api/auth/me","timestamp":"2026-03-13T17:08:59.923Z"}
+{"level":"info","message":"request","method":"GET","path":"/api/auth/me","timestamp":"2026-03-13T17:09:22.276Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/auth/login","timestamp":"2026-03-13T17:09:31.061Z"}
+{"level":"info","message":"user_logged_in","timestamp":"2026-03-13T17:09:31.409Z","userId":1,"username":"mateo99"}
+{"level":"info","message":"request","method":"GET","path":"/api/auth/me","timestamp":"2026-03-13T17:09:31.456Z"}
+{"level":"info","message":"🚀 Servidor corriendo en puerto 3000","timestamp":"2026-03-13T17:14:22.544Z"}
+{"level":"info","message":"request","method":"GET","path":"/api/auth/me","timestamp":"2026-03-13T17:14:47.923Z"}
+{"level":"info","message":"request","method":"GET","path":"/api/auth/me","timestamp":"2026-03-13T17:14:49.801Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/auth/login","timestamp":"2026-03-13T17:14:56.851Z"}
+{"level":"info","message":"user_logged_in","timestamp":"2026-03-13T17:14:57.208Z","userId":1,"username":"mateo99"}
+{"level":"info","message":"request","method":"GET","path":"/api/auth/me","timestamp":"2026-03-13T17:14:57.289Z"}
+{"level":"info","message":"request","method":"GET","path":"/api/auth/me","timestamp":"2026-03-13T17:15:00.824Z"}
+{"level":"info","message":"🚀 Servidor corriendo en puerto 3000","timestamp":"2026-03-13T17:16:44.826Z"}
+{"level":"info","message":"🚀 Servidor corriendo en puerto 3000","timestamp":"2026-03-13T17:18:19.271Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/auth/login","timestamp":"2026-03-13T17:18:47.290Z"}
+{"level":"info","message":"user_logged_in","timestamp":"2026-03-13T17:18:48.454Z","userId":1,"username":"mateo99"}
+{"level":"info","message":"request","method":"GET","path":"/api/auth/me","timestamp":"2026-03-13T17:18:48.587Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/start","timestamp":"2026-03-13T17:25:28.062Z"}
+{"difficulty":"easy","level":"info","message":"game_started","mode":"players","sessionId":2,"timestamp":"2026-03-13T17:25:28.174Z","userId":1}
+{"level":"info","message":"request","method":"POST","path":"/api/game/2/answer","timestamp":"2026-03-13T17:25:39.899Z"}
+{"isCorrect":false,"level":"info","message":"answer_submitted","questionRefId":9,"responseTimeMs":11647,"sessionId":2,"timestamp":"2026-03-13T17:25:39.933Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/2/answer","timestamp":"2026-03-13T17:25:46.000Z"}
+{"isCorrect":true,"level":"info","message":"answer_submitted","questionRefId":111,"responseTimeMs":4857,"sessionId":2,"timestamp":"2026-03-13T17:25:46.022Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/2/answer","timestamp":"2026-03-13T17:25:52.029Z"}
+{"isCorrect":false,"level":"info","message":"answer_submitted","questionRefId":169,"responseTimeMs":4800,"sessionId":2,"timestamp":"2026-03-13T17:25:52.044Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/2/answer","timestamp":"2026-03-13T17:25:53.945Z"}
+{"isCorrect":true,"level":"info","message":"answer_submitted","questionRefId":115,"responseTimeMs":696,"sessionId":2,"timestamp":"2026-03-13T17:25:53.957Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/2/answer","timestamp":"2026-03-13T17:25:57.096Z"}
+{"isCorrect":true,"level":"info","message":"answer_submitted","questionRefId":41,"responseTimeMs":1934,"sessionId":2,"timestamp":"2026-03-13T17:25:57.110Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/2/answer","timestamp":"2026-03-13T17:26:01.128Z"}
+{"isCorrect":false,"level":"info","message":"answer_submitted","questionRefId":58,"responseTimeMs":2814,"sessionId":2,"timestamp":"2026-03-13T17:26:01.141Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/2/answer","timestamp":"2026-03-13T17:26:05.646Z"}
+{"isCorrect":true,"level":"info","message":"answer_submitted","questionRefId":48,"responseTimeMs":3300,"sessionId":2,"timestamp":"2026-03-13T17:26:05.657Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/2/answer","timestamp":"2026-03-13T17:26:09.877Z"}
+{"isCorrect":true,"level":"info","message":"answer_submitted","questionRefId":82,"responseTimeMs":3015,"sessionId":2,"timestamp":"2026-03-13T17:26:09.889Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/2/answer","timestamp":"2026-03-13T17:26:14.612Z"}
+{"isCorrect":true,"level":"info","message":"answer_submitted","questionRefId":125,"responseTimeMs":3517,"sessionId":2,"timestamp":"2026-03-13T17:26:14.623Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/2/answer","timestamp":"2026-03-13T17:26:18.033Z"}
+{"isCorrect":true,"level":"info","message":"answer_submitted","questionRefId":62,"responseTimeMs":2199,"sessionId":2,"timestamp":"2026-03-13T17:26:18.061Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/2/finish","timestamp":"2026-03-13T17:26:19.270Z"}
+{"correctAnswers":7,"difficulty":"easy","level":"info","message":"game_finished","mode":"players","rankingPosition":1,"sessionId":2,"timestamp":"2026-03-13T17:26:19.297Z","totalTimeMs":66000,"userId":1}
+{"level":"info","message":"🚀 Servidor corriendo en puerto 3000","timestamp":"2026-03-13T17:35:05.643Z"}
+{"level":"info","message":"🚀 Servidor corriendo en puerto 3000","timestamp":"2026-03-13T17:37:30.408Z"}
+{"level":"info","message":"🚀 Servidor corriendo en puerto 3000","timestamp":"2026-03-13T17:47:36.730Z"}
+{"level":"info","message":"🌱 Iniciando seed...","timestamp":"2026-03-13T17:48:54.038Z"}
+{"level":"info","message":"✅ 142 equipos insertados","timestamp":"2026-03-13T17:48:54.127Z"}
+{"level":"info","message":"✅ 148 jugadores insertados","timestamp":"2026-03-13T17:48:54.282Z"}
+{"level":"info","message":"🎉 Seed completado exitosamente","timestamp":"2026-03-13T17:48:54.283Z"}

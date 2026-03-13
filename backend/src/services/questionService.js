@@ -11,21 +11,36 @@ const shuffle = (array) => {
 
 const questionService = {
   async generateQuestions(mode, difficulty, count = 10) {
-    const questions = [];
-    const usedIds = [];
     const division = difficulty === 'easy' ? 'primera' : null;
     const isFamous = difficulty === 'easy';
 
+    if (mode === 'timed') {
+      const teamCount = Math.ceil(count / 2);
+      const playerCount = Math.floor(count / 2);
+      const teamQuestions = await questionService.generateQuestions('teams', difficulty, teamCount);
+      const playerQuestions = await questionService.generateQuestions('players', difficulty, playerCount);
+      return shuffle([...teamQuestions, ...playerQuestions]);
+    }
+
     if (mode === 'teams') {
-      const teams = await questionRepository.getRandomTeams(
-        division || '%',
-        count,
-        []
-      );
+      const teams = await questionRepository.getRandomTeams(division, count);
+      const questions = [];
 
       for (const team of teams) {
-        usedIds.push(team.id);
-        const wrongOptions = await questionRepository.getRandomTeamsAsOptions(team.id, 2);
+        // Buscar opciones de la misma liga y división
+        let wrongOptions = await questionRepository.getWrongTeamOptions(team.id, team.league, team.division, 2);
+
+        // Fallback: mismo país si no hay suficientes de la misma liga
+        if (wrongOptions.length < 2) {
+          const extra = await questionRepository.getWrongTeamOptionsFallback(
+            team.id, team.country, 2 - wrongOptions.length
+          );
+          wrongOptions = [...wrongOptions, ...extra];
+        }
+
+        // Si aún no hay 2, saltar esta pregunta
+        if (wrongOptions.length < 2) continue;
+
         const options = shuffle([
           { id: team.id, name: team.name, logo_url: team.logo_url, correct: true },
           ...wrongOptions.map(t => ({ id: t.id, name: t.name, logo_url: t.logo_url, correct: false }))
@@ -39,15 +54,30 @@ const questionService = {
           options
         });
       }
+
+      return questions;
     }
 
     if (mode === 'players') {
-      const players = await questionRepository.getRandomPlayers(isFamous, count, []);
+      const players = await questionRepository.getRandomPlayers(isFamous, count);
+      const questions = [];
 
       for (const player of players) {
-        usedIds.push(player.id);
-        const wrongOptions = await questionRepository.getRandomTeamsAsPlayerOptions(player.team_id, 2);
-        const correctTeam = { id: player.team_id, name: player.team_name };
+        // Buscar opciones de la misma liga y división
+        let wrongOptions = await questionRepository.getWrongTeamOptions(
+          player.team_id, player.league, player.division, 2
+        );
+
+        // Fallback: mismo país
+        if (wrongOptions.length < 2) {
+          const extra = await questionRepository.getWrongTeamOptionsFallback(
+            player.team_id, player.country, 2 - wrongOptions.length
+          );
+          wrongOptions = [...wrongOptions, ...extra];
+        }
+
+        if (wrongOptions.length < 2) continue;
+
         const options = shuffle([
           { id: player.team_id, name: player.team_name, correct: true },
           ...wrongOptions.map(t => ({ id: t.id, name: t.name, correct: false }))
@@ -61,19 +91,11 @@ const questionService = {
           options
         });
       }
+
+      return questions;
     }
 
-    if (mode === 'timed') {
-      const teamCount = Math.ceil(count / 2);
-      const playerCount = Math.floor(count / 2);
-
-      const teamQuestions = await questionService.generateQuestions('teams', difficulty, teamCount);
-      const playerQuestions = await questionService.generateQuestions('players', difficulty, playerCount);
-
-      return shuffle([...teamQuestions, ...playerQuestions]);
-    }
-
-    return questions;
+    return [];
   }
 };
 

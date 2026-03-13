@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar sesión · TriviaFútbol</title>
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+
+  <div class="card">
+    <div class="logo">Trivia<span>Fútbol</span> ⚽</div>
+
+    <div class="tabs">
+      <button class="tab active" id="tabLogin" onclick="switchTab('login')">Iniciar sesión</button>
+      <button class="tab" id="tabRegister" onclick="switchTab('register')">Registrarse</button>
+    </div>
+
+    <!-- LOGIN -->
+    <div id="formLogin">
+      <div class="input-group">
+        <label>Usuario</label>
+        <input type="text" id="loginUsername" placeholder="Tu nombre de usuario" autocomplete="username">
+      </div>
+      <div class="input-group">
+        <label>Contraseña</label>
+        <input type="password" id="loginPassword" placeholder="Tu contraseña" autocomplete="current-password">
+      </div>
+      <div class="error-msg" id="loginError"></div>
+      <br>
+      <button class="btn btn-verde" onclick="login()">⚽ Entrar</button>
+    </div>
+
+    <!-- REGISTER -->
+    <div id="formRegister" style="display:none">
+      <div class="input-group">
+        <label>Elegí un usuario</label>
+        <input type="text" id="regUsername" placeholder="Solo letras y números" autocomplete="username">
+      </div>
+      <div class="input-group">
+        <label>Contraseña</label>
+        <input type="password" id="regPassword" placeholder="Mínimo 6 caracteres" autocomplete="new-password">
+      </div>
+      <div class="error-msg" id="registerError"></div>
+      <br>
+      <button class="btn btn-azul" onclick="register()">🎮 Crear cuenta</button>
+    </div>
+
+    <br>
+    <a class="btn btn-ghost" href="index.html">← Volver</a>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script>
+    // Verificar si ya está logueado
+    api.getMe().then(user => {
+      if (user) window.location.href = 'index.html';
+    });
+
+    // Si viene de force_password_reset
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('reset') === '1') {
+      document.getElementById('loginError').textContent = 'Tu contraseña fue reseteada. Ingresá con la contraseña temporal.';
+      document.getElementById('loginError').classList.add('visible');
+    }
+
+    function switchTab(tab) {
+      document.getElementById('formLogin').style.display = tab === 'login' ? 'block' : 'none';
+      document.getElementById('formRegister').style.display = tab === 'register' ? 'block' : 'none';
+      document.getElementById('tabLogin').classList.toggle('active', tab === 'login');
+      document.getElementById('tabRegister').classList.toggle('active', tab === 'register');
+    }
+
+    async function login() {
+      const username = document.getElementById('loginUsername').value.trim();
+      const password = document.getElementById('loginPassword').value;
+      const errorEl = document.getElementById('loginError');
+      errorEl.classList.remove('visible');
+
+      if (!username || !password) {
+        errorEl.textContent = 'Completá todos los campos';
+        errorEl.classList.add('visible');
+        return;
+      }
+
+      const result = await api.login(username, password);
+      if (result.error) {
+        errorEl.textContent = result.error;
+        errorEl.classList.add('visible');
+      } else {
+        window.location.href = 'index.html';
+      }
+    }
+
+    async function register() {
+      const username = document.getElementById('regUsername').value.trim();
+      const password = document.getElementById('regPassword').value;
+      const errorEl = document.getElementById('registerError');
+      errorEl.classList.remove('visible');
+
+      if (!username || !password) {
+        errorEl.textContent = 'Completá todos los campos';
+        errorEl.classList.add('visible');
+        return;
+      }
+
+      const result = await api.register(username, password);
+      if (result.error) {
+        errorEl.textContent = result.error;
+        errorEl.classList.add('visible');
+      } else {
+        window.location.href = 'index.html';
+      }
+    }
+
+    // Enter para enviar
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        const tab = document.getElementById('tabLogin').classList.contains('active') ? 'login' : 'register';
+        tab === 'login' ? login() : register();
+      }
+    });
+  </script>
+</body>
+</html>

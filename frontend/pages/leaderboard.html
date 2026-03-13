@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ranking · TriviaFútbol</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <style>
+    .filter-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      flex: 1;
+      min-width: 80px;
+      padding: 10px 8px;
+      border: 2px solid rgba(255,255,255,0.1);
+      border-radius: var(--radio-btn);
+      background: transparent;
+      color: var(--gris);
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+    .filter-btn.active {
+      border-color: var(--amarillo);
+      color: var(--amarillo);
+      background: rgba(255,215,0,0.08);
+    }
+    .ranking-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 24px;
+      min-height: 200px;
+    }
+    .ranking-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255,255,255,0.05);
+      border-radius: var(--radio-btn);
+      padding: 12px 16px;
+    }
+    .ranking-pos {
+      font-family: 'Fredoka One', cursive;
+      font-size: 22px;
+      width: 36px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .ranking-username {
+      flex: 1;
+      font-weight: 800;
+      font-size: 16px;
+    }
+    .ranking-score {
+      font-family: 'Fredoka One', cursive;
+      font-size: 18px;
+      color: var(--amarillo);
+    }
+    .ranking-time {
+      font-size: 13px;
+      color: var(--gris);
+    }
+    .empty-msg {
+      text-align: center;
+      color: var(--gris);
+      font-size: 15px;
+      padding: 40px 0;
+    }
+    .loading { text-align: center; color: var(--gris); padding: 40px 0; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>🏆 Ranking</h2>
+
+    <div class="filter-row">
+      <button class="filter-btn active" data-mode="teams" onclick="setMode('teams')">🛡️ Equipos</button>
+      <button class="filter-btn" data-mode="players" onclick="setMode('players')">⭐ Jugadores</button>
+      <button class="filter-btn" data-mode="timed" onclick="setMode('timed')">⏱️ Reloj</button>
+    </div>
+
+    <div class="filter-row">
+      <button class="filter-btn active" data-diff="easy" onclick="setDiff('easy')">🟢 Juveniles</button>
+      <button class="filter-btn" data-diff="hard" onclick="setDiff('hard')">🔴 Primera</button>
+    </div>
+
+    <div class="ranking-list" id="rankingList">
+      <div class="loading">Cargando...</div>
+    </div>
+
+    <a class="btn btn-ghost" href="index.html">← Volver</a>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script>
+    let currentMode = 'teams';
+    let currentDiff = 'easy';
+
+    function setMode(mode) {
+      currentMode = mode;
+      document.querySelectorAll('[data-mode]').forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
+      loadRanking();
+    }
+
+    function setDiff(diff) {
+      currentDiff = diff;
+      document.querySelectorAll('[data-diff]').forEach(b => b.classList.toggle('active', b.dataset.diff === diff));
+      loadRanking();
+    }
+
+    const MEDALS = ['🥇', '🥈', '🥉'];
+
+    async function loadRanking() {
+      const list = document.getElementById('rankingList');
+      list.innerHTML = '<div class="loading">Cargando...</div>';
+
+      const res = await api.getLeaderboard(currentMode, currentDiff);
+      if (res.error) {
+        list.innerHTML = `<div class="empty-msg">Error al cargar el ranking</div>`;
+        return;
+      }
+
+      const rows = res.leaderboard;
+      if (!rows || rows.length === 0) {
+        list.innerHTML = `<div class="empty-msg">¡Todavía no hay jugadores en este ranking!<br>¡Sé el primero! ⚽</div>`;
+        return;
+      }
+
+      list.innerHTML = rows.map((row, i) => {
+        const pos = MEDALS[i] || `#${i + 1}`;
+        const timeStr = row.total_time_ms
+          ? (() => {
+              const s = Math.floor(row.total_time_ms / 1000);
+              return `${Math.floor(s/60)}:${(s%60).toString().padStart(2,'0')}`;
+            })()
+          : null;
+
+        return `<div class="ranking-row">
+          <div class="ranking-pos">${pos}</div>
+          <div class="ranking-username">👤 ${row.username}</div>
+          <div>
+            <div class="ranking-score">⚽ ${row.correct_answers}</div>
+            ${timeStr ? `<div class="ranking-time">⏱ ${timeStr}</div>` : ''}
+          </div>
+        </div>`;
+      }).join('');
+    }
+
+    loadRanking();
+  </script>
+</body>
+</html>

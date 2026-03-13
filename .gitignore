@@ -4,3 +4,4 @@ logs/
 coverage/
 playwright-report/
 .DS_Store
+cookies.txt

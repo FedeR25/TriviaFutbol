@@ -170,6 +170,7 @@ const teams = [
 const players = [
   // Argentina
   { name: 'Lionel Messi', team_name: 'Inter Miami', league: 'MLS', country: 'Argentina', is_famous: true },
+  { name: 'Lautaro Blanco', team_name: 'Boca Juniors', league: 'Liga Profesional Argentina'},
   { name: 'Lautaro Martinez', team_name: 'Inter Milan', league: 'Serie A', country: 'Argentina', is_famous: true },
   { name: 'Julian Alvarez', team_name: 'Atletico Madrid', league: 'La Liga', country: 'Argentina', is_famous: true },
   { name: 'Paulo Dybala', team_name: 'Roma', league: 'Serie A', country: 'Argentina', is_famous: true },

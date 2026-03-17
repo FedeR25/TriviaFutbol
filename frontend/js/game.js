@@ -118,11 +118,7 @@ function showQuestion() {
   q.options.forEach(opt => {
     const btn = document.createElement('button');
     btn.className = 'option-btn';
-    if (opt.logo_url) {
-      btn.innerHTML = `<img src="${opt.logo_url}" alt="${opt.name}"><span>${opt.name}</span>`;
-    } else {
-      btn.textContent = opt.name;
-    }
+    btn.textContent = opt.name;
     btn.onclick = () => submitAnswer(opt, q);
     optionsGrid.appendChild(btn);
   });

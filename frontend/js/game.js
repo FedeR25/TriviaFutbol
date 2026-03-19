@@ -1,7 +1,6 @@
 const mode = sessionStorage.getItem('mode');
-const difficulty = sessionStorage.getItem('difficulty');
 
-if (!mode || !difficulty) window.location.href = 'select-mode.html';
+if (!mode) window.location.href = 'select-mode.html';
 
 let sessionId = null;
 let questions = [];
@@ -29,7 +28,7 @@ const timedBarWrap  = document.getElementById('timedBarWrap');
 const timedBar      = document.getElementById('timedBar');
 
 async function init() {
-  const res = await api.startGame(mode, difficulty);
+  const res = await api.startGame(mode);
   if (res.error) {
     alert('Error al iniciar el juego: ' + res.error);
     window.location.href = 'select-mode.html';
@@ -192,7 +191,7 @@ async function finishGame() {
     return;
   }
 
-  sessionStorage.setItem('lastResult', JSON.stringify({ ...res, mode, difficulty }));
+  sessionStorage.setItem('lastResult', JSON.stringify({ ...res, mode }));
   window.location.href = 'results.html';
 }
 

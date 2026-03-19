@@ -46,8 +46,8 @@ const api = {
     return this.request('PUT', '/auth/change-password', { currentPassword, newPassword });
   },
 
-  async startGame(mode, difficulty) {
-    return this.request('POST', '/game/start', { mode, difficulty });
+ async startGame(mode) {
+    return this.request('POST', '/game/start', { mode });
   },
   async submitAnswer(sessionId, questionRefId, questionType, answerGiven, responseTimeMs) {
     return this.request('POST', `/game/${sessionId}/answer`, {
@@ -61,8 +61,8 @@ const api = {
     return this.request('GET', `/game/${sessionId}/result`);
   },
 
-  async getLeaderboard(mode, difficulty) {
-    return this.request('GET', `/ranking/${mode}/${difficulty}`);
+  async getLeaderboard(mode) {
+    return this.request('GET', `/ranking/${mode}`);
   },
 
   async getUsers() {

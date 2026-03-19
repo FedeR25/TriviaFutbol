@@ -1,24 +1,20 @@
 const pool = require('../db/client');
 
 const RANKING_TABLES = {
-  teams_easy: 'ranking_teams_easy',
-  teams_hard: 'ranking_teams_hard',
-  players_easy: 'ranking_players_easy',
-  players_hard: 'ranking_players_hard',
-  timed_easy: 'ranking_timed_easy',
-  timed_hard: 'ranking_timed_hard',
+  teams: 'ranking_teams',
+  players: 'ranking_players',
+  timed: 'ranking_timed',
 };
 
-const getTable = (mode, difficulty) => {
-  const key = `${mode}_${difficulty}`;
-  const table = RANKING_TABLES[key];
-  if (!table) throw new Error(`Ranking invalido: ${key}`);
+const getTable = (mode) => {
+  const table = RANKING_TABLES[mode];
+  if (!table) throw new Error(`Ranking inválido: ${mode}`);
   return table;
 };
 
 const rankingRepository = {
-  async findByUser(userId, mode, difficulty) {
-    const table = getTable(mode, difficulty);
+  async findByUser(userId, mode) {
+    const table = getTable(mode);
     const result = await pool.query(
       `SELECT * FROM ${table} WHERE user_id = $1`,
       [userId]
@@ -26,8 +22,8 @@ const rankingRepository = {
     return result.rows[0] || null;
   },
 
-  async upsert(userId, sessionId, correctAnswers, totalTimeMs, mode, difficulty) {
-    const table = getTable(mode, difficulty);
+  async upsert(userId, sessionId, correctAnswers, totalTimeMs, mode) {
+    const table = getTable(mode);
     const isTimed = mode === 'timed';
 
     if (isTimed) {
@@ -54,8 +50,8 @@ const rankingRepository = {
     }
   },
 
-  async getLeaderboard(mode, difficulty, limit = 50) {
-    const table = getTable(mode, difficulty);
+  async getLeaderboard(mode, limit = 50) {
+    const table = getTable(mode);
     const isTimed = mode === 'timed';
 
     if (isTimed) {

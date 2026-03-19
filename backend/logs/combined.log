@@ -256,3 +256,76 @@
 {"level":"info","message":"✅ 142 equipos insertados","timestamp":"2026-03-17T14:18:04.632Z"}
 {"level":"info","message":"✅ 148 jugadores insertados","timestamp":"2026-03-17T14:18:50.702Z"}
 {"level":"info","message":"🎉 Seed completado exitosamente","timestamp":"2026-03-17T14:18:50.859Z"}
+{"level":"info","message":"🚀 Servidor corriendo en puerto 3000","timestamp":"2026-03-17T18:25:24.576Z"}
+{"level":"info","message":"request","method":"GET","path":"/api/auth/me","timestamp":"2026-03-17T18:25:30.547Z"}
+{"level":"error","message":"Error interno del servidor","method":"GET","path":"/api/auth/me","stack":"AggregateError [ECONNREFUSED]: \n    at /Users/federicoramundo/Documents/TriviaFutbol/backend/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async Object.findById (/Users/federicoramundo/Documents/TriviaFutbol/backend/src/repositories/userRepository.js:13:20)\n    at async me (/Users/federicoramundo/Documents/TriviaFutbol/backend/src/controllers/authController.js:44:20)","status":500,"timestamp":"2026-03-17T18:25:30.644Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/auth/login","timestamp":"2026-03-17T18:25:39.126Z"}
+{"level":"warn","message":"login_failed","timestamp":"2026-03-17T18:25:39.131Z","username":"mateo99"}
+{"level":"error","message":"Error interno del servidor","method":"POST","path":"/api/auth/login","stack":"AggregateError [ECONNREFUSED]: \n    at /Users/federicoramundo/Documents/TriviaFutbol/backend/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async Object.findByUsername (/Users/federicoramundo/Documents/TriviaFutbol/backend/src/repositories/userRepository.js:5:20)\n    at async Object.login (/Users/federicoramundo/Documents/TriviaFutbol/backend/src/services/authService.js:23:18)\n    at async login (/Users/federicoramundo/Documents/TriviaFutbol/backend/src/controllers/authController.js:26:31)","status":500,"timestamp":"2026-03-17T18:25:39.131Z"}
+{"level":"info","message":"🚀 Servidor corriendo en puerto 3000","timestamp":"2026-03-17T18:26:09.270Z"}
+{"level":"info","message":"request","method":"GET","path":"/api/auth/me","timestamp":"2026-03-17T18:26:23.874Z"}
+{"level":"error","message":"Error interno del servidor","method":"GET","path":"/api/auth/me","stack":"AggregateError [ECONNREFUSED]: \n    at /Users/federicoramundo/Documents/TriviaFutbol/backend/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async Object.findById (/Users/federicoramundo/Documents/TriviaFutbol/backend/src/repositories/userRepository.js:13:20)\n    at async me (/Users/federicoramundo/Documents/TriviaFutbol/backend/src/controllers/authController.js:44:20)","status":500,"timestamp":"2026-03-17T18:26:23.981Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/auth/login","timestamp":"2026-03-17T18:26:29.343Z"}
+{"level":"warn","message":"login_failed","timestamp":"2026-03-17T18:26:29.346Z","username":"mateo99"}
+{"level":"error","message":"Error interno del servidor","method":"POST","path":"/api/auth/login","stack":"AggregateError [ECONNREFUSED]: \n    at /Users/federicoramundo/Documents/TriviaFutbol/backend/node_modules/pg-pool/index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async Object.findByUsername (/Users/federicoramundo/Documents/TriviaFutbol/backend/src/repositories/userRepository.js:5:20)\n    at async Object.login (/Users/federicoramundo/Documents/TriviaFutbol/backend/src/services/authService.js:23:18)\n    at async login (/Users/federicoramundo/Documents/TriviaFutbol/backend/src/controllers/authController.js:26:31)","status":500,"timestamp":"2026-03-17T18:26:29.346Z"}
+{"level":"info","message":"🌱 Iniciando seed...","timestamp":"2026-03-19T12:27:42.567Z"}
+{"level":"info","message":"✅ 142 equipos insertados","timestamp":"2026-03-19T12:28:04.579Z"}
+{"level":"info","message":"🚀 Servidor corriendo en puerto 3000","timestamp":"2026-03-19T15:55:27.888Z"}
+{"level":"info","message":"request","method":"GET","path":"/api/auth/me","timestamp":"2026-03-19T15:57:36.150Z"}
+{"level":"info","message":"request","method":"GET","path":"/api/auth/me","timestamp":"2026-03-19T15:57:36.445Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/start","timestamp":"2026-03-19T16:00:12.115Z"}
+{"level":"info","message":"request","method":"GET","path":"/api/auth/me","timestamp":"2026-03-19T16:00:13.546Z"}
+{"level":"info","message":"🚀 Servidor corriendo en puerto 3000","timestamp":"2026-03-19T17:19:49.871Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/auth/login","timestamp":"2026-03-19T17:20:03.378Z"}
+{"level":"info","message":"user_logged_in","timestamp":"2026-03-19T17:20:03.709Z","userId":1,"username":"mateo99"}
+{"level":"info","message":"request","method":"GET","path":"/api/auth/me","timestamp":"2026-03-19T17:20:03.757Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/start","timestamp":"2026-03-19T17:20:09.606Z"}
+{"level":"info","message":"game_started","mode":"players","sessionId":14,"timestamp":"2026-03-19T17:20:09.615Z","userId":1}
+{"level":"info","message":"request","method":"POST","path":"/api/game/14/answer","timestamp":"2026-03-19T17:20:12.768Z"}
+{"isCorrect":true,"level":"info","message":"answer_submitted","questionRefId":123,"responseTimeMs":3102,"sessionId":14,"timestamp":"2026-03-19T17:20:12.789Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/14/answer","timestamp":"2026-03-19T17:20:17.129Z"}
+{"isCorrect":false,"level":"info","message":"answer_submitted","questionRefId":137,"responseTimeMs":3131,"sessionId":14,"timestamp":"2026-03-19T17:20:17.141Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/14/answer","timestamp":"2026-03-19T17:20:20.168Z"}
+{"isCorrect":true,"level":"info","message":"answer_submitted","questionRefId":140,"responseTimeMs":1814,"sessionId":14,"timestamp":"2026-03-19T17:20:20.182Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/14/answer","timestamp":"2026-03-19T17:20:24.014Z"}
+{"isCorrect":false,"level":"info","message":"answer_submitted","questionRefId":113,"responseTimeMs":2620,"sessionId":14,"timestamp":"2026-03-19T17:20:24.027Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/14/answer","timestamp":"2026-03-19T17:20:27.066Z"}
+{"isCorrect":true,"level":"info","message":"answer_submitted","questionRefId":51,"responseTimeMs":1825,"sessionId":14,"timestamp":"2026-03-19T17:20:27.078Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/14/answer","timestamp":"2026-03-19T17:20:31.548Z"}
+{"isCorrect":true,"level":"info","message":"answer_submitted","questionRefId":118,"responseTimeMs":3259,"sessionId":14,"timestamp":"2026-03-19T17:20:31.561Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/14/answer","timestamp":"2026-03-19T17:20:35.901Z"}
+{"isCorrect":true,"level":"info","message":"answer_submitted","questionRefId":48,"responseTimeMs":3127,"sessionId":14,"timestamp":"2026-03-19T17:20:35.914Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/14/answer","timestamp":"2026-03-19T17:20:39.597Z"}
+{"isCorrect":true,"level":"info","message":"answer_submitted","questionRefId":66,"responseTimeMs":2474,"sessionId":14,"timestamp":"2026-03-19T17:20:39.604Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/14/answer","timestamp":"2026-03-19T17:20:44.621Z"}
+{"isCorrect":true,"level":"info","message":"answer_submitted","questionRefId":97,"responseTimeMs":3809,"sessionId":14,"timestamp":"2026-03-19T17:20:44.629Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/14/answer","timestamp":"2026-03-19T17:20:49.511Z"}
+{"isCorrect":false,"level":"info","message":"answer_submitted","questionRefId":100,"responseTimeMs":3676,"sessionId":14,"timestamp":"2026-03-19T17:20:49.519Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/14/finish","timestamp":"2026-03-19T17:20:50.730Z"}
+{"correctAnswers":7,"level":"info","message":"game_finished","mode":"players","rankingPosition":1,"sessionId":14,"timestamp":"2026-03-19T17:20:50.751Z","totalTimeMs":56000,"userId":1}
+{"level":"info","message":"request","method":"POST","path":"/api/game/start","timestamp":"2026-03-19T17:24:29.076Z"}
+{"level":"info","message":"game_started","mode":"players","sessionId":15,"timestamp":"2026-03-19T17:24:29.105Z","userId":1}
+{"level":"info","message":"request","method":"POST","path":"/api/game/start","timestamp":"2026-03-19T17:24:39.890Z"}
+{"level":"info","message":"game_started","mode":"players","sessionId":16,"timestamp":"2026-03-19T17:24:39.919Z","userId":1}
+{"level":"info","message":"request","method":"POST","path":"/api/game/16/answer","timestamp":"2026-03-19T17:24:42.933Z"}
+{"isCorrect":true,"level":"info","message":"answer_submitted","questionRefId":48,"responseTimeMs":2970,"sessionId":16,"timestamp":"2026-03-19T17:24:42.949Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/16/answer","timestamp":"2026-03-19T17:24:46.280Z"}
+{"isCorrect":false,"level":"info","message":"answer_submitted","questionRefId":76,"responseTimeMs":2120,"sessionId":16,"timestamp":"2026-03-19T17:24:46.292Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/16/answer","timestamp":"2026-03-19T17:24:50.167Z"}
+{"isCorrect":false,"level":"info","message":"answer_submitted","questionRefId":128,"responseTimeMs":2662,"sessionId":16,"timestamp":"2026-03-19T17:24:50.179Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/16/answer","timestamp":"2026-03-19T17:24:52.744Z"}
+{"isCorrect":false,"level":"info","message":"answer_submitted","questionRefId":35,"responseTimeMs":1355,"sessionId":16,"timestamp":"2026-03-19T17:24:52.754Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/16/answer","timestamp":"2026-03-19T17:24:54.863Z"}
+{"isCorrect":true,"level":"info","message":"answer_submitted","questionRefId":143,"responseTimeMs":898,"sessionId":16,"timestamp":"2026-03-19T17:24:54.874Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/16/answer","timestamp":"2026-03-19T17:24:57.214Z"}
+{"isCorrect":false,"level":"info","message":"answer_submitted","questionRefId":58,"responseTimeMs":1128,"sessionId":16,"timestamp":"2026-03-19T17:24:57.225Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/16/answer","timestamp":"2026-03-19T17:24:59.380Z"}
+{"isCorrect":false,"level":"info","message":"answer_submitted","questionRefId":43,"responseTimeMs":943,"sessionId":16,"timestamp":"2026-03-19T17:24:59.392Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/16/answer","timestamp":"2026-03-19T17:25:02.209Z"}
+{"isCorrect":false,"level":"info","message":"answer_submitted","questionRefId":12,"responseTimeMs":1610,"sessionId":16,"timestamp":"2026-03-19T17:25:02.221Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/16/answer","timestamp":"2026-03-19T17:25:04.761Z"}
+{"isCorrect":true,"level":"info","message":"answer_submitted","questionRefId":51,"responseTimeMs":1333,"sessionId":16,"timestamp":"2026-03-19T17:25:04.772Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/16/answer","timestamp":"2026-03-19T17:25:11.395Z"}
+{"isCorrect":true,"level":"info","message":"answer_submitted","questionRefId":22,"responseTimeMs":5416,"sessionId":16,"timestamp":"2026-03-19T17:25:11.405Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/16/finish","timestamp":"2026-03-19T17:25:12.613Z"}
+{"correctAnswers":4,"level":"info","message":"game_finished","mode":"players","rankingPosition":1,"sessionId":16,"timestamp":"2026-03-19T17:25:12.626Z","totalTimeMs":62000,"userId":1}

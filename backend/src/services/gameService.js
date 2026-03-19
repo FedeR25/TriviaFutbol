@@ -2,21 +2,19 @@ const gameRepository = require('../repositories/gameRepository');
 const rankingService = require('./rankingService');
 const logger = require('../utils/logger');
 
-const PENALTY_EASY_MS = 5000;
-const PENALTY_HARD_MS = 10000;
+const PENALTY_MS = 5000;
 const MAX_RESPONSE_TIME_MS = 60000;
 
 const gameService = {
-  async startSession(userId, mode, difficulty) {
-    const session = await gameRepository.createSession(userId, mode, difficulty);
-    logger.info({ message: 'game_started', userId, sessionId: session.id, mode, difficulty });
+  async startSession(userId, mode) {
+    const session = await gameRepository.createSession(userId, mode);
+    logger.info({ message: 'game_started', userId, sessionId: session.id, mode });
     return session;
   },
 
   async submitAnswer(sessionId, userId, questionRefId, questionType, answerGiven, responseTimeMs) {
     const session = await gameRepository.findSessionById(sessionId);
 
-    // Validaciones de seguridad
     if (!session) {
       const error = new Error('Sesión no encontrada');
       error.status = 404;
@@ -45,12 +43,10 @@ const gameService = {
       throw error;
     }
 
-    // Determinar si es correcta
     let isCorrect = false;
     if (questionType === 'teams') {
       isCorrect = answerGiven === questionRefId;
     } else if (questionType === 'players') {
-      const { Pool } = require('pg');
       const pool = require('../db/client');
       const result = await pool.query(
         'SELECT team_id FROM players WHERE id = $1',
@@ -60,31 +56,21 @@ const gameService = {
       isCorrect = player && answerGiven === player.team_id;
     }
 
-    // Guardar respuesta
     await gameRepository.createAnswer(
       sessionId, questionRefId, questionType,
       answerGiven, isCorrect, responseTimeMs
     );
 
-    // Calcular penalización
-    const penalty = isCorrect ? 0 :
-      (session.difficulty === 'easy' ? PENALTY_EASY_MS : PENALTY_HARD_MS);
+    const penalty = isCorrect ? 0 : PENALTY_MS;
 
-    // Actualizar sesión
-    const updatedSession = await gameRepository.updateSession(sessionId, {
+    await gameRepository.updateSession(sessionId, {
       correct_answers: session.correct_answers + (isCorrect ? 1 : 0),
       wrong_answers: session.wrong_answers + (isCorrect ? 0 : 1),
       penalty_ms: session.penalty_ms + penalty,
       questions_answered: session.questions_answered + 1,
     });
 
-    logger.info({
-      message: 'answer_submitted',
-      sessionId,
-      questionRefId,
-      isCorrect,
-      responseTimeMs
-    });
+    logger.info({ message: 'answer_submitted', sessionId, questionRefId, isCorrect, responseTimeMs });
 
     return { isCorrect, penaltyMs: penalty, correctAnswerId: questionRefId };
   },
@@ -110,19 +96,17 @@ const gameService = {
 
     const totalTimeMs = rawTimeMs + session.penalty_ms;
 
-    const completedSession = await gameRepository.updateSession(sessionId, {
+    await gameRepository.updateSession(sessionId, {
       raw_time_ms: rawTimeMs,
       total_time_ms: totalTimeMs,
       completed: true
     });
 
-    // Actualizar ranking
     const rankingPosition = await rankingService.updateRanking(
       userId, sessionId,
       session.correct_answers,
       totalTimeMs,
-      session.mode,
-      session.difficulty
+      session.mode
     );
 
     logger.info({
@@ -130,7 +114,6 @@ const gameService = {
       userId,
       sessionId,
       mode: session.mode,
-      difficulty: session.difficulty,
       correctAnswers: session.correct_answers,
       totalTimeMs,
       rankingPosition

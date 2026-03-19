@@ -1,12 +1,12 @@
 const pool = require('../db/client');
 
 const gameRepository = {
-  async createSession(userId, mode, difficulty) {
+  async createSession(userId, mode) {
     const result = await pool.query(
-      `INSERT INTO game_sessions (user_id, mode, difficulty)
-       VALUES ($1, $2, $3)
+      `INSERT INTO game_sessions (user_id, mode)
+       VALUES ($1, $2)
        RETURNING *`,
-      [userId, mode, difficulty]
+      [userId, mode]
     );
     return result.rows[0];
   },

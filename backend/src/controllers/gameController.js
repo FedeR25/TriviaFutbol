@@ -4,17 +4,15 @@ const questionService = require('../services/questionService');
 const gameController = {
   async start(req, res, next) {
     try {
-      const { mode, difficulty } = req.body;
-      const session = await gameService.startSession(req.user.id, mode, difficulty);
+      const { mode } = req.body;
+      const session = await gameService.startSession(req.user.id, mode);
 
-      // Generar preguntas y guardarlas en sesión
       const count = mode === 'timed' ? 50 : 10;
-      const questions = await questionService.generateQuestions(mode, difficulty, count);
+      const questions = await questionService.generateQuestions(mode, count);
 
       res.status(201).json({
         sessionId: session.id,
         mode: session.mode,
-        difficulty: session.difficulty,
         questions
       });
     } catch (err) {

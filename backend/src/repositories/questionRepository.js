@@ -1,26 +1,23 @@
 const pool = require('../db/client');
 
 const questionRepository = {
-  async getRandomTeams(division, limit) {
-    const divisionClause = division ? `WHERE division = $1` : '';
-    const params = division ? [limit] : [limit];
-
+  async getRandomTeams(limit) {
     const result = await pool.query(
       `SELECT id, name, league, country, division, logo_url
        FROM teams
-       ${division ? `WHERE division = $1 ORDER BY RANDOM() LIMIT $2` : `ORDER BY RANDOM() LIMIT $1`}`,
-      division ? [division, limit] : [limit]
+       ORDER BY RANDOM()
+       LIMIT $1`,
+      [limit]
     );
     return result.rows;
   },
 
-  async getRandomPlayers(isFamous, limit) {
-    const famousClause = isFamous ? 'AND p.is_famous = true' : '';
+  async getRandomPlayers(limit) {
     const result = await pool.query(
-      `SELECT p.id, p.name, p.photo_url, p.country, t.name as team_name, t.id as team_id, t.league, t.division
+      `SELECT p.id, p.name, p.photo_url, t.name as team_name, t.id as team_id, t.league, t.division, t.country
        FROM players p
        JOIN teams t ON t.id = p.team_id
-       WHERE t.id IS NOT NULL ${famousClause}
+       WHERE t.id IS NOT NULL
        ORDER BY RANDOM()
        LIMIT $1`,
       [limit]

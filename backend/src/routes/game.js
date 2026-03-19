@@ -9,8 +9,6 @@ const Joi = require('joi');
 const startSchema = Joi.object({
   mode: Joi.string().valid('teams', 'players', 'timed').required()
     .messages({ 'any.only': 'Modo inválido. Debe ser teams, players o timed' }),
-  difficulty: Joi.string().valid('easy', 'hard').required()
-    .messages({ 'any.only': 'Dificultad inválida. Debe ser easy o hard' })
 });
 
 const answerSchema = Joi.object({

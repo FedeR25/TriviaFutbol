@@ -16,7 +16,6 @@
     "seed": "node src/db/seeds/run.js",
     "lint": "eslint src/"
   },
-
   "jest": {
     "testEnvironment": "node",
     "coverageThreshold": {
@@ -25,15 +24,15 @@
       }
     }
   },
-  
-"node-pg-migrate": {
-  "migrationsDir": "src/db/migrations",
-  "databaseUrlEnvVar": "DATABASE_URL",
-  "dir": "src/db/migrations"
-},
-
-
+  "node-pg-migrate": {
+    "migrationsDir": "src/db/migrations",
+    "databaseUrlEnvVar": "DATABASE_URL",
+    "dir": "src/db/migrations"
+  },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.3.1"
+  }
 }

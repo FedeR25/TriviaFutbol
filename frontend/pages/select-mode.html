@@ -64,7 +64,12 @@
   </div>
 
   <script>
-    function selectMode(mode) {
+   async function selectMode(mode) {
+  const user = await api.getMe();
+  if (!user) {
+    window.location.href = 'login.html';
+    return;
+  }
   sessionStorage.setItem('mode', mode);
   window.location.href = 'game.html';
 }

@@ -50,7 +50,7 @@ const rankingRepository = {
     }
   },
 
-  async getLeaderboard(mode, limit = 50) {
+  async getLeaderboard(mode, limit = 25) {
     const table = getTable(mode);
     const isTimed = mode === 'timed';
 

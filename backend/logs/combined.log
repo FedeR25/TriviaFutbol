@@ -329,3 +329,7 @@
 {"isCorrect":true,"level":"info","message":"answer_submitted","questionRefId":22,"responseTimeMs":5416,"sessionId":16,"timestamp":"2026-03-19T17:25:11.405Z"}
 {"level":"info","message":"request","method":"POST","path":"/api/game/16/finish","timestamp":"2026-03-19T17:25:12.613Z"}
 {"correctAnswers":4,"level":"info","message":"game_finished","mode":"players","rankingPosition":1,"sessionId":16,"timestamp":"2026-03-19T17:25:12.626Z","totalTimeMs":62000,"userId":1}
+{"level":"info","message":"🌱 Iniciando seed...","timestamp":"2026-03-20T11:38:42.721Z"}
+{"level":"info","message":"✅ 142 equipos insertados","timestamp":"2026-03-20T11:39:04.621Z"}
+{"level":"info","message":"✅ 1985 jugadores insertados","timestamp":"2026-03-20T11:49:20.860Z"}
+{"level":"info","message":"🎉 Seed completado exitosamente","timestamp":"2026-03-20T11:49:21.013Z"}

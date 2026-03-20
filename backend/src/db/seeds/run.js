@@ -1668,7 +1668,7 @@ const players = [
 { name: 'James Trafford', team_name: 'Burnley FC', league: 'Liga Inglesa'},
 { name: 'Aro Muric', team_name: 'Burnley FC', league: 'Liga Inglesa'},
 { name: 'Hannes Delcroix', team_name: 'Burnley FC', league: 'Liga Inglesa'},
-{ name: 'Dara O'Shea', team_name: 'Burnley FC', league: 'Liga Inglesa'},
+{ name: 'Dara OShea', team_name: 'Burnley FC', league: 'Liga Inglesa'},
 { name: 'Jordan Beyer', team_name: 'Burnley FC', league: 'Liga Inglesa'},
 { name: 'Charlie Taylor', team_name: 'Burnley FC', league: 'Liga Inglesa'},
 { name: 'Vitinho', team_name: 'Burnley FC', league: 'Liga Inglesa'},

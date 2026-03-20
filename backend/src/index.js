@@ -52,9 +52,9 @@ app.use('/api/admin', adminRoutes);
 // Manejo global de errores
 app.use(errorHandler);
 
-// Iniciar servidor
-app.listen(env.PORT, () => {
-  logger.info(`🚀 Servidor corriendo en puerto ${env.PORT}`);
+// Cambiamos PORT por env.PORT (que es como lo tenés en tu config)
+const server = app.listen(env.PORT || 3000, () => {
+  console.log(`Servidor corriendo en puerto ${env.PORT || 3000}`);
 });
 
-module.exports = app;
+module.exports = { app, server };

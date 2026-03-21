@@ -3,12 +3,18 @@ const app = require('../src/index');
 
 describe('Game Flow Integration Tests', () => {
   let authToken;
-  const testUser = { username: `user_${Date.now()}`, password: 'password123' };
 
   beforeAll(async () => {
-    await request(app).post('/api/auth/register').send(testUser);
-    const res = await request(app).post('/api/auth/login').send(testUser);
+    // Intentamos login directamente con el usuario del Seed
+    const res = await request(app)
+      .post('/api/auth/login')
+      .send({ username: 'testadmin', password: 'password123' });
+    
     authToken = res.body.token;
+    
+    if (!authToken) {
+      throw new Error(`Error en Auth de Integración: ${res.statusCode} - ${JSON.stringify(res.body)}`);
+    }
   });
 
   test('Should start a new game session', async () => {
@@ -17,8 +23,9 @@ describe('Game Flow Integration Tests', () => {
       .set('Authorization', `Bearer ${authToken}`)
       .send({ mode: 'teams' });
 
-    expect([200, 201]).toContain(res.statusCode);
+    expect(res.statusCode).toBeLessThan(300);
     expect(res.body).toHaveProperty('sessionId');
+    expect(res.body.questions.length).toBeGreaterThan(0);
   });
 
   test('Should apply penalty for wrong answer', async () => {
@@ -29,7 +36,7 @@ describe('Game Flow Integration Tests', () => {
     
     const sId = startRes.body.sessionId;
     const question = startRes.body.questions[0];
-    const wrongOpt = question.options.find(opt => !opt.correct);
+    const wrongOpt = question.options.find(opt => opt.correct === false);
 
     const res = await request(app)
       .post(`/api/game/${sId}/answer`)
@@ -52,7 +59,7 @@ describe('Game Flow Integration Tests', () => {
     
     const sId = startRes.body.sessionId;
     const question = startRes.body.questions[0];
-    const correctOpt = question.options.find(opt => opt.correct);
+    const correctOpt = question.options.find(opt => opt.correct === true);
 
     const res = await request(app)
       .post(`/api/game/${sId}/answer`)

@@ -3,19 +3,16 @@ const app = require('../src/index');
 
 describe('Game Flow Integration Tests', () => {
   let authToken;
-  // Nombre único para que authController.test.js no lo pise
   const integrationUser = {
-    username: 'user_integration_unique',
+    username: 'user_game_integration',
     password: 'password123'
   };
 
   beforeAll(async () => {
-    // 1. Registro
+    // Registro
     await request(app).post('/api/auth/register').send(integrationUser);
-    
-    // 2. Login
+    // Login
     const res = await request(app).post('/api/auth/login').send(integrationUser);
-    
     authToken = res.body.token;
   });
 

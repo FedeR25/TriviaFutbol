@@ -10,10 +10,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     
-    # AGREGAMOS ESTO: Cambia 'backend' por el nombre de tu carpeta
+    # Esto asegura que todos los comandos se ejecuten dentro de la carpeta donde está el package.json
     defaults:
       run:
-        working-directory: backend 
+        working-directory: backend
 
     services:
       postgres:
@@ -38,13 +38,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 24
+          # No usamos cache aquí para evitar errores de package-lock.json
 
       - name: Instalar dependencias
         run: npm install
 
-      - name: Correr Tests
+      - name: Correr Tests con Cobertura
         run: npm test
         env:
           DATABASE_URL: postgresql://user_test:password_test@localhost:5432/trivia_test
           JWT_SECRET: test_secret_key_123
+          COOKIE_SECRET: una_cookie_secreta_para_test_ci
           NODE_ENV: test

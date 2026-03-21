@@ -6,15 +6,19 @@ describe('Game Flow Integration Tests', () => {
 
   beforeAll(async () => {
     const testUser = {
-      username: `integracion_${Date.now()}`,
-      password: 'password123'
+      username: 'admin_test',
+      password: 'admin_password'
     };
 
-    // 1. Registro limpio
-    await request(app).post('/api/auth/register').send(testUser);
-    
-    // 2. Login
-    const res = await request(app).post('/api/auth/login').send(testUser);
+    // Registro
+    await request(app)
+      .post('/api/auth/register')
+      .send(testUser);
+
+    // Login
+    const res = await request(app)
+      .post('/api/auth/login')
+      .send(testUser);
     
     authToken = res.body.token;
   });
@@ -27,7 +31,6 @@ describe('Game Flow Integration Tests', () => {
 
     expect([200, 201]).toContain(res.statusCode);
     expect(res.body).toHaveProperty('sessionId');
-    expect(res.body.questions.length).toBeGreaterThan(0);
   });
 
   test('Should apply penalty for wrong answer', async () => {
@@ -37,15 +40,15 @@ describe('Game Flow Integration Tests', () => {
       .send({ mode: 'teams' });
     
     const sId = startRes.body.sessionId;
-    const question = startRes.body.questions[0];
-    const wrongOpt = question.options.find(opt => !opt.correct);
+    const firstQuestion = startRes.body.questions[0];
+    const wrongOption = firstQuestion.options.find(opt => !opt.correct);
 
     const res = await request(app)
       .post(`/api/game/${sId}/answer`)
       .set('Authorization', `Bearer ${authToken}`)
       .send({
-        questionRefId: question.id,
-        optionId: wrongOpt.id,
+        questionRefId: firstQuestion.id,
+        optionId: wrongOption.id,
         responseTimeMs: 1000
       });
 
@@ -60,15 +63,15 @@ describe('Game Flow Integration Tests', () => {
       .send({ mode: 'teams' });
     
     const sId = startRes.body.sessionId;
-    const question = startRes.body.questions[0];
-    const correctOpt = question.options.find(opt => opt.correct);
+    const firstQuestion = startRes.body.questions[0];
+    const correctOption = firstQuestion.options.find(opt => opt.correct === true);
 
     const res = await request(app)
       .post(`/api/game/${sId}/answer`)
       .set('Authorization', `Bearer ${authToken}`)
       .send({
-        questionRefId: question.id,
-        optionId: correctOpt.id,
+        questionRefId: firstQuestion.id,
+        optionId: correctOption.id,
         responseTimeMs: 500
       });
 

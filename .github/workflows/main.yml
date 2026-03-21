@@ -45,7 +45,7 @@ jobs:
         run: |
           psql $DATABASE_URL -c "CREATE TABLE IF NOT EXISTS users (id SERIAL PRIMARY KEY, username TEXT UNIQUE, password TEXT, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);"
           psql $DATABASE_URL -c "CREATE TABLE IF NOT EXISTS sessions (id SERIAL PRIMARY KEY, user_id INTEGER, mode TEXT, score INTEGER DEFAULT 0, completed BOOLEAN DEFAULT FALSE, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);"
-          # Insertamos el hash real de 'admin123' escapando los $ para bash
+          # Usamos comillas simples EXTERNAS para que bash no toque los símbolos $
           psql $DATABASE_URL -c "INSERT INTO users (username, password) VALUES ('admin', '\$2b\$10\$Pa6vW9smO6Y5e.yYp6.f/.K.xM1PZ9x0D9M0u.0zY8Y8Y8Y8Y8Y8Y') ON CONFLICT (username) DO UPDATE SET password = EXCLUDED.password;"
         env:
           DATABASE_URL: postgresql://user_test:password_test@localhost:5432/trivia_test

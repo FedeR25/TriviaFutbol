@@ -30,7 +30,7 @@ jobs:
         working-directory: ./backend
 
       - name: Correr Tests
-        run: npm test
+        run: npm run test:coverage
         working-directory: ./backend
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}

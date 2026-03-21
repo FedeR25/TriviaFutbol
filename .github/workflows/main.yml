@@ -9,6 +9,11 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    
+    # AGREGAMOS ESTO: Cambia 'backend' por el nombre de tu carpeta
+    defaults:
+      run:
+        working-directory: backend 
 
     services:
       postgres:
@@ -33,12 +38,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 24
-          # Quitamos la línea de cache para evitar el error de 'lock file not found'
 
       - name: Instalar dependencias
         run: npm install
 
-      - name: Correr Tests con Cobertura
+      - name: Correr Tests
         run: npm test
         env:
           DATABASE_URL: postgresql://user_test:password_test@localhost:5432/trivia_test

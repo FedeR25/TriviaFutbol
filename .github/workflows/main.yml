@@ -43,7 +43,7 @@ jobs:
         env:
           DATABASE_URL: postgresql://user_test:password_test@localhost:5432/trivia_test
       - name: Correr Tests
-        # Ejecutamos en serie para evitar el 401 por colisión de DB
+        # --runInBand es fundamental para que no colisionen los tests en la DB
         run: npm test -- --runInBand
         env:
           DATABASE_URL: postgresql://user_test:password_test@localhost:5432/trivia_test

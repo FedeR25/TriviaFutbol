@@ -3,17 +3,23 @@ const app = require('../src/index');
 
 describe('Game Flow Integration Tests', () => {
   let authToken;
-  const integrationUser = {
+  const testUser = {
     username: 'user_game_integration',
     password: 'password123'
   };
 
   beforeAll(async () => {
-    // Registro
-    await request(app).post('/api/auth/register').send(integrationUser);
-    // Login
-    const res = await request(app).post('/api/auth/login').send(integrationUser);
+    // 1. Aseguramos que el usuario exista registrándolo
+    await request(app).post('/api/auth/register').send(testUser);
+    
+    // 2. Ahora hacemos login para obtener el token
+    const res = await request(app).post('/api/auth/login').send(testUser);
+    
     authToken = res.body.token;
+    
+    if (!authToken) {
+      throw new Error(`Fallo el login en el test: ${res.statusCode} - ${JSON.stringify(res.body)}`);
+    }
   });
 
   test('Should start a new game session', async () => {

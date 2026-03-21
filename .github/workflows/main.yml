@@ -51,8 +51,8 @@ jobs:
           # INSERT USUARIO (Password: password123). Escapamos los $ para que bash no los rompa.
           psql $DATABASE_URL -c "INSERT INTO users (username, password) VALUES ('testadmin', '\$2b\$10\$Pa6vW9smO6Y5e.yYp6.f/.K.xM1PZ9x0D9M0u.0zY8Y8Y8Y8Y8Y8Y');"
           
-          # INSERT PREGUNTA (Estructura exacta: team_A y opciones con ID)
-          psql $DATABASE_URL -c "INSERT INTO questions (type, data) VALUES ('teams', '{\"id\": \"team_A\", \"options\": [{\"id\": 1, \"text\": \"Correcta\", \"correct\": true}, {\"id\": 2, \"text\": \"Incorrecta\", \"correct\": false}]}'::jsonb);"
+          # INSERT PREGUNTA SEMILLA
+          psql $DATABASE_URL -c "INSERT INTO questions (type, data) VALUES ('teams', '{\"id\": \"team_A\", \"options\": [{\"id\": 1, \"text\": \"Opcion Correcta\", \"correct\": true}, {\"id\": 2, \"text\": \"Opcion Incorrecta\", \"correct\": false}]}'::jsonb);"
         env:
           DATABASE_URL: postgresql://user_test:password_test@localhost:5432/trivia_test
 

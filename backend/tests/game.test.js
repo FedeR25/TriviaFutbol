@@ -3,9 +3,10 @@ const app = require('../src/index');
 
 describe('Game Flow Integration Tests', () => {
   let authToken;
+  let sessionId;
 
   beforeAll(async () => {
-    // Intentamos login directamente con el usuario del Seed
+    // Login directo con el usuario inyectado por el YAML
     const res = await request(app)
       .post('/api/auth/login')
       .send({ username: 'testadmin', password: 'password123' });
@@ -13,7 +14,7 @@ describe('Game Flow Integration Tests', () => {
     authToken = res.body.token;
     
     if (!authToken) {
-      throw new Error(`Error en Auth de Integración: ${res.statusCode} - ${JSON.stringify(res.body)}`);
+      throw new Error(`Error de autenticación en CI: ${res.statusCode} - ${JSON.stringify(res.body)}`);
     }
   });
 
@@ -26,6 +27,7 @@ describe('Game Flow Integration Tests', () => {
     expect(res.statusCode).toBeLessThan(300);
     expect(res.body).toHaveProperty('sessionId');
     expect(res.body.questions.length).toBeGreaterThan(0);
+    sessionId = res.body.sessionId;
   });
 
   test('Should apply penalty for wrong answer', async () => {

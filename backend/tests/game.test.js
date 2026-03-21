@@ -1,5 +1,5 @@
 const request = require('supertest');
-const { app, server } = require('../src/index');
+const app = require('../src/index');
 
 describe('Game Flow Integration Tests', () => {
   let authToken;

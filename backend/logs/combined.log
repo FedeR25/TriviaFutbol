@@ -481,3 +481,12 @@
 {"level":"info","message":"game_started","mode":"teams","sessionId":40,"timestamp":"2026-03-21T00:34:24.228Z","userId":2}
 {"level":"info","message":"request","method":"POST","path":"/api/game/40/answer","timestamp":"2026-03-21T00:34:26.068Z"}
 {"isCorrect":true,"level":"info","message":"answer_submitted","questionRefId":47,"responseTimeMs":800,"sessionId":40,"timestamp":"2026-03-21T00:34:26.684Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/auth/login","timestamp":"2026-03-21T00:54:42.912Z"}
+{"level":"info","message":"user_logged_in","timestamp":"2026-03-21T00:54:44.737Z","userId":2,"username":"admin"}
+{"level":"info","message":"request","method":"GET","path":"/api/auth/me","timestamp":"2026-03-21T00:54:44.780Z"}
+{"level":"info","message":"request","method":"GET","path":"/api/auth/me","timestamp":"2026-03-21T00:57:36.401Z"}
+{"level":"info","message":"request","method":"GET","path":"/api/auth/me","timestamp":"2026-03-21T01:00:57.187Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/start","timestamp":"2026-03-21T01:01:13.326Z"}
+{"level":"info","message":"request","method":"GET","path":"/api/auth/me","timestamp":"2026-03-21T01:02:03.578Z"}
+{"level":"info","message":"request","method":"POST","path":"/api/game/start","timestamp":"2026-03-21T01:02:04.755Z"}
+{"level":"info","message":"game_started","mode":"teams","sessionId":41,"timestamp":"2026-03-21T01:02:04.935Z","userId":2}

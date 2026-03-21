@@ -1,4 +1,8 @@
-const API_URL = 'https://triviafutbol.onrender.com/api';
+// Cambiá esto:
+// const API_URL = 'https://triviafutbol.onrender.com/api';
+
+// Por esto:
+const API_URL = 'http://localhost:3000/api';
 
 const api = {
   async request(method, path, body = null) {

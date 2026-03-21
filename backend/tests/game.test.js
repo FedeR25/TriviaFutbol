@@ -3,22 +3,18 @@ const app = require('../src/index');
 
 describe('Game Flow Integration Tests', () => {
   let authToken;
+  // Nombre único para que authController.test.js no lo pise
+  const integrationUser = {
+    username: 'user_integration_unique',
+    password: 'password123'
+  };
 
   beforeAll(async () => {
-    const testUser = {
-      username: 'admin_test',
-      password: 'admin_password'
-    };
-
-    // Registro
-    await request(app)
-      .post('/api/auth/register')
-      .send(testUser);
-
-    // Login
-    const res = await request(app)
-      .post('/api/auth/login')
-      .send(testUser);
+    // 1. Registro
+    await request(app).post('/api/auth/register').send(integrationUser);
+    
+    // 2. Login
+    const res = await request(app).post('/api/auth/login').send(integrationUser);
     
     authToken = res.body.token;
   });
@@ -31,6 +27,7 @@ describe('Game Flow Integration Tests', () => {
 
     expect([200, 201]).toContain(res.statusCode);
     expect(res.body).toHaveProperty('sessionId');
+    expect(Array.isArray(res.body.questions)).toBe(true);
   });
 
   test('Should apply penalty for wrong answer', async () => {

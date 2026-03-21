@@ -29,13 +29,13 @@ jobs:
         run: npx playwright install --with-deps
         working-directory: ./backend
 
-      - name: Correr Tests (Integración + Playwright)
+      - name: Correr Tests
         run: npm test
         working-directory: ./backend
         env:
-          # Esto usa lo que cargaste en Settings > Secrets
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          COOKIE_SECRET: ${{ secrets.COOKIE_SECRET }}
           NODE_ENV: test
 
       - name: Subir Reportes

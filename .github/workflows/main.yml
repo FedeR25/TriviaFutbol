@@ -1,49 +1,46 @@
-name: Pipeline de Trivia Futbol (Test + Deploy)
+name: Ejecutar Tests de Calidad
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
 
 jobs:
   test:
-    name: Ejecutar Tests de Calidad
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout código
-        uses: actions/checkout@v4
 
-      - name: Configurar Node.js
-        uses: actions/setup-node@v4
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: user_test
+          POSTGRES_PASSWORD: password_test
+          POSTGRES_DB: trivia_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4 # Antes era v3 o v2
+      
+      - name: Configurar Node.js 24
+        uses: actions/setup-node@v4 # Antes era v3
         with:
-          node-version: 20
+          node-version: 24 # ESTO MATA EL WARNING
           cache: 'npm'
-          cache-dependency-path: ./backend/package.json
 
       - name: Instalar dependencias
         run: npm install
-        working-directory: ./backend
 
-      - name: Correr Tests con Cobertura
-        # AQUÍ ESTÁ EL CAMBIO CLAVE:
+      - name: Correr Tests
+        run: npm test
         env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          JWT_SECRET: ${{ secrets.JWT_SECRET }}
-          COOKIE_SECRET: ${{ secrets.COOKIE_SECRET }}
-        run: npm run test:coverage
-        working-directory: ./backend
-
-      - name: Subir Reporte de Cobertura
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-reports
-          path: backend/coverage/
-
-  deploy:
-    name: Desplegar a Render
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
-      - name: Ejecutar Deploy en Render
-        run: |
-          curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
+          DATABASE_URL: postgresql://user_test:password_test@localhost:5432/trivia_test
+          JWT_SECRET: test_secret_key_123
+          NODE_ENV: test

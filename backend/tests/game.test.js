@@ -3,25 +3,20 @@ const app = require('../src/index');
 
 describe('Game Flow Integration Tests', () => {
   let authToken;
-  let sessionId;
-  // Generamos un usuario único para esta corrida de tests
-  const testUser = {
-    username: `user_${Date.now()}`,
-    password: 'password123'
-  };
+  const testUser = { username: `testuser_${Date.now()}`, password: 'password123' };
 
   beforeAll(async () => {
-    // 1. Registro limpio
-    await request(app)
-      .post('/api/auth/register')
-      .send(testUser);
-
-    // 2. Login para obtener el token real generado por bcrypt
-    const res = await request(app)
-      .post('/api/auth/login')
-      .send(testUser);
+    // Registro
+    await request(app).post('/api/auth/register').send(testUser);
     
-    authToken = res.body.token;
+    // Login
+    const loginRes = await request(app).post('/api/auth/login').send(testUser);
+    
+    if (!loginRes.body.token) {
+      throw new Error("No se pudo obtener el token. Revisar logs del servidor.");
+    }
+    
+    authToken = loginRes.body.token;
   });
 
   test('Should start a new game session', async () => {
@@ -32,7 +27,7 @@ describe('Game Flow Integration Tests', () => {
 
     expect([200, 201]).toContain(res.statusCode);
     expect(res.body).toHaveProperty('sessionId');
-    sessionId = res.body.sessionId;
+    expect(res.body.questions.length).toBeGreaterThan(0);
   });
 
   test('Should apply penalty for wrong answer', async () => {
@@ -42,14 +37,14 @@ describe('Game Flow Integration Tests', () => {
       .send({ mode: 'teams' });
     
     const sId = startRes.body.sessionId;
-    const firstQuestion = startRes.body.questions[0];
-    const wrongOption = firstQuestion.options.find(opt => !opt.correct);
+    const question = startRes.body.questions[0];
+    const wrongOption = question.options.find(opt => opt.correct === false);
 
     const res = await request(app)
       .post(`/api/game/${sId}/answer`)
       .set('Authorization', `Bearer ${authToken}`)
       .send({
-        questionRefId: firstQuestion.id,
+        questionRefId: question.id,
         optionId: wrongOption.id,
         responseTimeMs: 1000
       });
@@ -65,14 +60,14 @@ describe('Game Flow Integration Tests', () => {
       .send({ mode: 'teams' });
     
     const sId = startRes.body.sessionId;
-    const firstQuestion = startRes.body.questions[0];
-    const correctOption = firstQuestion.options.find(opt => opt.correct === true);
+    const question = startRes.body.questions[0];
+    const correctOption = question.options.find(opt => opt.correct === true);
 
     const res = await request(app)
       .post(`/api/game/${sId}/answer`)
       .set('Authorization', `Bearer ${authToken}`)
       .send({
-        questionRefId: firstQuestion.id,
+        questionRefId: question.id,
         optionId: correctOption.id,
         responseTimeMs: 500
       });

@@ -3,22 +3,22 @@ const app = require('../src/index');
 
 describe('Game Flow Integration Tests', () => {
   let authToken;
+  // Usamos un nombre que NO sea admin para no chocar con authController.test.js
+  const uniqueIntegrationUser = {
+    username: 'integracion_oficial_test',
+    password: 'password123'
+  };
 
   beforeAll(async () => {
-    const testUser = {
-      username: 'admin_test',
-      password: 'admin_password'
-    };
-
-    // Registro
+    // 1. Registro: Creamos el usuario en la DB real del CI
     await request(app)
       .post('/api/auth/register')
-      .send(testUser);
-
-    // Login
+      .send(uniqueIntegrationUser);
+    
+    // 2. Login: Obtenemos el token para el resto de los tests
     const res = await request(app)
       .post('/api/auth/login')
-      .send(testUser);
+      .send(uniqueIntegrationUser);
     
     authToken = res.body.token;
   });

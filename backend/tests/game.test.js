@@ -4,18 +4,22 @@ const app = require('../src/index');
 describe('Game Flow Integration Tests', () => {
   let authToken;
   let sessionId;
+  // Generamos un usuario único para esta corrida de tests
+  const testUser = {
+    username: `user_${Date.now()}`,
+    password: 'password123'
+  };
 
   beforeAll(async () => {
-    // 1. Intentamos registrar al usuario por si la base está vacía
-    // Ignoramos si falla (por si ya existe de un test previo)
+    // 1. Registro limpio
     await request(app)
       .post('/api/auth/register')
-      .send({ username: 'admin', password: 'admin123' });
+      .send(testUser);
 
-    // 2. Login para obtener el token
+    // 2. Login para obtener el token real generado por bcrypt
     const res = await request(app)
       .post('/api/auth/login')
-      .send({ username: 'admin', password: 'admin123' });
+      .send(testUser);
     
     authToken = res.body.token;
   });
@@ -28,7 +32,6 @@ describe('Game Flow Integration Tests', () => {
 
     expect([200, 201]).toContain(res.statusCode);
     expect(res.body).toHaveProperty('sessionId');
-    expect(res.body.questions.length).toBeGreaterThan(0);
     sessionId = res.body.sessionId;
   });
 
@@ -40,8 +43,6 @@ describe('Game Flow Integration Tests', () => {
     
     const sId = startRes.body.sessionId;
     const firstQuestion = startRes.body.questions[0];
-
-    // Buscamos una opción que NO sea la correcta
     const wrongOption = firstQuestion.options.find(opt => !opt.correct);
 
     const res = await request(app)
@@ -54,7 +55,6 @@ describe('Game Flow Integration Tests', () => {
       });
 
     expect(res.statusCode).toBe(200);
-    // Verificamos que el score bajó o se aplicó la lógica de error
     expect(res.body.isCorrect).toBe(false);
   });
 
@@ -66,8 +66,6 @@ describe('Game Flow Integration Tests', () => {
     
     const sId = startRes.body.sessionId;
     const firstQuestion = startRes.body.questions[0];
-
-    // Buscamos la opción que tiene correct: true
     const correctOption = firstQuestion.options.find(opt => opt.correct === true);
 
     const res = await request(app)

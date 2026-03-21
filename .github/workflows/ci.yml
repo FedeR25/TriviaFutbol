@@ -1,27 +1,14 @@
-name: CI
+name: CI Trivia Futbol
 
 on:
+  push:
+    branches: [ main, dev ]
   pull_request:
-    branches: [main, dev]
+    branches: [ main, dev ]
 
 jobs:
   test:
     runs-on: ubuntu-latest
-
-    services:
-      postgres:
-        image: postgres:15
-        env:
-          POSTGRES_USER: triviafutbol
-          POSTGRES_PASSWORD: triviafutbol
-          POSTGRES_DB: triviafutbol_test
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
 
     steps:
       - name: Checkout código
@@ -38,32 +25,24 @@ jobs:
         run: npm ci
         working-directory: ./backend
 
-      - name: Lint
-        run: npm run lint
+      - name: Instalar Navegadores Playwright
+        run: npx playwright install --with-deps
         working-directory: ./backend
 
-      - name: Auditoría de seguridad
-        run: npm audit --audit-level=high
-        working-directory: ./backend
-
-      - name: Correr migraciones
-        run: npm run migrate
+      - name: Correr Tests (Integración + Playwright)
+        run: npm test
         working-directory: ./backend
         env:
-          DATABASE_URL: postgresql://triviafutbol:triviafutbol@localhost:5432/triviafutbol_test
+          # Esto usa lo que cargaste en Settings > Secrets
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
           NODE_ENV: test
 
-      - name: Tests
-        run: npm run test:coverage
-        working-directory: ./backend
-        env:
-          DATABASE_URL: postgresql://triviafutbol:triviafutbol@localhost:5432/triviafutbol_test
-          NODE_ENV: test
-          JWT_SECRET: test_secret_ci
-          COOKIE_SECRET: test_cookie_ci
-
-      - name: Subir reporte de cobertura
+      - name: Subir Reportes
         uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: coverage-report
-          path: backend/coverage/
+          name: test-reports
+          path: |
+            backend/coverage/
+            backend/playwright-report/

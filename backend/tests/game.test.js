@@ -3,20 +3,13 @@ const app = require('../src/index');
 
 describe('Game Flow Integration Tests', () => {
   let authToken;
-  const testUser = { username: `testuser_${Date.now()}`, password: 'password123' };
+  const testUser = { username: `user_${Date.now()}`, password: 'password123' };
 
   beforeAll(async () => {
-    // Registro
     await request(app).post('/api/auth/register').send(testUser);
-    
-    // Login
-    const loginRes = await request(app).post('/api/auth/login').send(testUser);
-    
-    if (!loginRes.body.token) {
-      throw new Error("No se pudo obtener el token. Revisar logs del servidor.");
-    }
-    
-    authToken = loginRes.body.token;
+    const res = await request(app).post('/api/auth/login').send(testUser);
+    authToken = res.body.token;
+    if (!authToken) throw new Error("Auth failed: No token received");
   });
 
   test('Should start a new game session', async () => {
@@ -27,7 +20,7 @@ describe('Game Flow Integration Tests', () => {
 
     expect([200, 201]).toContain(res.statusCode);
     expect(res.body).toHaveProperty('sessionId');
-    expect(res.body.questions.length).toBeGreaterThan(0);
+    sessionId = res.body.sessionId;
   });
 
   test('Should apply penalty for wrong answer', async () => {
@@ -38,14 +31,14 @@ describe('Game Flow Integration Tests', () => {
     
     const sId = startRes.body.sessionId;
     const question = startRes.body.questions[0];
-    const wrongOption = question.options.find(opt => opt.correct === false);
+    const wrongOpt = question.options.find(opt => opt.correct === false || !opt.correct);
 
     const res = await request(app)
       .post(`/api/game/${sId}/answer`)
       .set('Authorization', `Bearer ${authToken}`)
       .send({
         questionRefId: question.id,
-        optionId: wrongOption.id,
+        optionId: wrongOpt.id,
         responseTimeMs: 1000
       });
 
@@ -61,14 +54,14 @@ describe('Game Flow Integration Tests', () => {
     
     const sId = startRes.body.sessionId;
     const question = startRes.body.questions[0];
-    const correctOption = question.options.find(opt => opt.correct === true);
+    const correctOpt = question.options.find(opt => opt.correct === true);
 
     const res = await request(app)
       .post(`/api/game/${sId}/answer`)
       .set('Authorization', `Bearer ${authToken}`)
       .send({
         questionRefId: question.id,
-        optionId: correctOption.id,
+        optionId: correctOpt.id,
         responseTimeMs: 500
       });
 

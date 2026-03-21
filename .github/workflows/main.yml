@@ -47,7 +47,8 @@ jobs:
           psql $DATABASE_URL -c "CREATE TABLE users (id SERIAL PRIMARY KEY, username TEXT UNIQUE, password TEXT);"
           psql $DATABASE_URL -c "CREATE TABLE sessions (id SERIAL PRIMARY KEY, user_id INTEGER, mode TEXT, score INTEGER DEFAULT 0, completed BOOLEAN DEFAULT FALSE);"
           psql $DATABASE_URL -c "CREATE TABLE questions (id SERIAL PRIMARY KEY, type TEXT, data JSONB);"
-          psql $DATABASE_URL -c "INSERT INTO questions (type, data) VALUES ('teams', '{\"id\": \"team_A\", \"options\": [{\"id\": 1, \"text\": \"Correcta\", \"correct\": true}, {\"id\": 2, \"text\": \"Incorrecta\", \"correct\": false}]}'::jsonb);"
+          # Usamos IDs de tipo string para evitar errores de comparación en JS
+          psql $DATABASE_URL -c "INSERT INTO questions (type, data) VALUES ('teams', '{\"id\": \"team_A\", \"options\": [{\"id\": \"opt_1\", \"text\": \"Correcta\", \"correct\": true}, {\"id\": \"opt_2\", \"text\": \"Incorrecta\", \"correct\": false}]}'::jsonb);"
         env:
           DATABASE_URL: postgresql://user_test:password_test@localhost:5432/trivia_test
 

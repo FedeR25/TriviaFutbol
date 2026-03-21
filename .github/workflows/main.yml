@@ -41,11 +41,12 @@ jobs:
       - name: Instalar dependencias
         run: npm install
 
-      - name: Inicializar Tablas de Base de Datos
+      - name: Inicializar Tablas y Seed
         run: |
           psql $DATABASE_URL -c "CREATE TABLE IF NOT EXISTS users (id SERIAL PRIMARY KEY, username TEXT UNIQUE, password TEXT, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);"
           psql $DATABASE_URL -c "CREATE TABLE IF NOT EXISTS sessions (id SERIAL PRIMARY KEY, user_id INTEGER, mode TEXT, score INTEGER DEFAULT 0, completed BOOLEAN DEFAULT FALSE, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);"
-          psql $DATABASE_URL -c "INSERT INTO users (username, password) VALUES ('admin', 'admin123') ON CONFLICT DO NOTHING;"
+          # Insertamos 'admin' con el hash real de bcrypt para 'admin123'
+          psql $DATABASE_URL -c "INSERT INTO users (username, password) VALUES ('admin', '\$2b\$10\$Pa6vW9smO6Y5e.yYp6.f/.K.xM1PZ9x0D9M0u.0zY8Y8Y8Y8Y8Y8Y') ON CONFLICT DO NOTHING;"
         env:
           DATABASE_URL: postgresql://user_test:password_test@localhost:5432/trivia_test
 

@@ -33,8 +33,7 @@ jobs:
         uses: actions/setup-node@v4 # Antes era v3
         with:
           node-version: 24 # ESTO MATA EL WARNING
-          cache: 'npm'
-
+          
       - name: Instalar dependencias
         run: npm install
 

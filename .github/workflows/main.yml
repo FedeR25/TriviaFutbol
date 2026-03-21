@@ -6,7 +6,6 @@ on:
       - main
 
 jobs:
-  # TRABAJO 1: Los Tests
   test:
     name: Ejecutar Tests de Calidad
     runs-on: ubuntu-latest
@@ -26,6 +25,11 @@ jobs:
         working-directory: ./backend
 
       - name: Correr Tests con Cobertura
+        # AQUÍ ESTÁ EL CAMBIO CLAVE:
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          COOKIE_SECRET: ${{ secrets.COOKIE_SECRET }}
         run: npm run test:coverage
         working-directory: ./backend
 
@@ -35,15 +39,11 @@ jobs:
           name: test-reports
           path: backend/coverage/
 
-  # TRABAJO 2: El Deploy (SOLO si el trabajo 'test' sale bien)
   deploy:
     name: Desplegar a Render
     runs-on: ubuntu-latest
-    needs: test  # <--- ESTA ES LA MAGIA: Si falla el test, este paso se salta.
+    needs: test
     steps:
       - name: Ejecutar Deploy en Render
         run: |
           curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
-
-      - name: Notificar éxito
-        run: echo "🚀 El código pasó los tests y ya está en producción."

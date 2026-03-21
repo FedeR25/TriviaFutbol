@@ -27,17 +27,18 @@ jobs:
 
     steps:
       - name: Checkout del código
-        uses: actions/checkout@v4 # Antes era v3 o v2
+        uses: actions/checkout@v4
       
       - name: Configurar Node.js 24
-        uses: actions/setup-node@v4 # Antes era v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 24 # ESTO MATA EL WARNING
-          
+          node-version: 24
+          # Quitamos la línea de cache para evitar el error de 'lock file not found'
+
       - name: Instalar dependencias
         run: npm install
 
-      - name: Correr Tests
+      - name: Correr Tests con Cobertura
         run: npm test
         env:
           DATABASE_URL: postgresql://user_test:password_test@localhost:5432/trivia_test

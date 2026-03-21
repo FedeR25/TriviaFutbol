@@ -10,7 +10,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
     
-    # Esto asegura que todos los comandos se ejecuten dentro de la carpeta donde está el package.json
     defaults:
       run:
         working-directory: backend
@@ -38,10 +37,17 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 24
-          # No usamos cache aquí para evitar errores de package-lock.json
 
       - name: Instalar dependencias
         run: npm install
+
+      - name: Inicializar Tablas de Base de Datos
+        run: |
+          psql $DATABASE_URL -c "CREATE TABLE IF NOT EXISTS users (id SERIAL PRIMARY KEY, username TEXT UNIQUE, password TEXT, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);"
+          psql $DATABASE_URL -c "CREATE TABLE IF NOT EXISTS sessions (id SERIAL PRIMARY KEY, user_id INTEGER, mode TEXT, score INTEGER DEFAULT 0, completed BOOLEAN DEFAULT FALSE, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);"
+          psql $DATABASE_URL -c "INSERT INTO users (username, password) VALUES ('admin', 'admin123') ON CONFLICT DO NOTHING;"
+        env:
+          DATABASE_URL: postgresql://user_test:password_test@localhost:5432/trivia_test
 
       - name: Correr Tests con Cobertura
         run: npm test

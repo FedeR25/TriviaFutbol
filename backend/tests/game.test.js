@@ -3,25 +3,20 @@ const app = require('../src/index');
 
 describe('Game Flow Integration Tests', () => {
   let authToken;
-  const uniqueUser = {
-    username: `user_${Date.now()}`,
-    password: 'password123'
-  };
 
   beforeAll(async () => {
-    // 1. Registro
-    await request(app).post('/api/auth/register').send(uniqueUser);
+    const testUser = {
+      username: `integracion_${Date.now()}`,
+      password: 'password123'
+    };
+
+    // 1. Registro limpio
+    await request(app).post('/api/auth/register').send(testUser);
     
-    // 2. ESPERA CRUCIAL: Damos tiempo a la DB para que asiente el usuario
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    // 3. Login
-    const res = await request(app).post('/api/auth/login').send(uniqueUser);
+    // 2. Login
+    const res = await request(app).post('/api/auth/login').send(testUser);
     
     authToken = res.body.token;
-    if (!authToken) {
-      throw new Error(`401 Unauthorized: El usuario no fue encontrado a tiempo en la DB. Status: ${res.statusCode}`);
-    }
   });
 
   test('Should start a new game session', async () => {
@@ -30,7 +25,7 @@ describe('Game Flow Integration Tests', () => {
       .set('Authorization', `Bearer ${authToken}`)
       .send({ mode: 'teams' });
 
-    expect(res.statusCode).toBeLessThan(400);
+    expect([200, 201]).toContain(res.statusCode);
     expect(res.body).toHaveProperty('sessionId');
     expect(res.body.questions.length).toBeGreaterThan(0);
   });

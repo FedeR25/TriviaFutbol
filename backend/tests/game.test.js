@@ -3,22 +3,24 @@ const app = require('../src/index');
 
 describe('Game Flow Integration Tests', () => {
   let authToken;
-  // Usuario dinámico para evitar errores de base de datos
   const uniqueUser = {
     username: `user_${Date.now()}`,
     password: 'password123'
   };
 
   beforeAll(async () => {
-    // 1. Registro (usando tu API para que bcrypt genere el hash correctamente)
+    // 1. Registro
     await request(app).post('/api/auth/register').send(uniqueUser);
     
-    // 2. Login
+    // 2. ESPERA CRUCIAL: Damos tiempo a la DB para que asiente el usuario
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    // 3. Login
     const res = await request(app).post('/api/auth/login').send(uniqueUser);
     
     authToken = res.body.token;
     if (!authToken) {
-      throw new Error("No se pudo obtener el token en la integración");
+      throw new Error(`401 Unauthorized: El usuario no fue encontrado a tiempo en la DB. Status: ${res.statusCode}`);
     }
   });
 

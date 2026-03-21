@@ -47,12 +47,8 @@ const gameService = {
     if (questionType === 'teams') {
       isCorrect = answerGiven === questionRefId;
     } else if (questionType === 'players') {
-      const pool = require('../db/client');
-      const result = await pool.query(
-        'SELECT team_id FROM players WHERE id = $1',
-        [questionRefId]
-      );
-      const player = result.rows[0];
+      // Lógica limpia usando el nuevo método del repositorio
+      const player = await gameRepository.getPlayerTeam(questionRefId);
       isCorrect = player && answerGiven === player.team_id;
     }
 

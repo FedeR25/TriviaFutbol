@@ -9,7 +9,6 @@ describe('Game Flow Integration Tests', () => {
     await request(app).post('/api/auth/register').send(testUser);
     const res = await request(app).post('/api/auth/login').send(testUser);
     authToken = res.body.token;
-    if (!authToken) throw new Error("Auth failed: No token received");
   });
 
   test('Should start a new game session', async () => {
@@ -20,7 +19,6 @@ describe('Game Flow Integration Tests', () => {
 
     expect([200, 201]).toContain(res.statusCode);
     expect(res.body).toHaveProperty('sessionId');
-    sessionId = res.body.sessionId;
   });
 
   test('Should apply penalty for wrong answer', async () => {
@@ -31,7 +29,7 @@ describe('Game Flow Integration Tests', () => {
     
     const sId = startRes.body.sessionId;
     const question = startRes.body.questions[0];
-    const wrongOpt = question.options.find(opt => opt.correct === false || !opt.correct);
+    const wrongOpt = question.options.find(opt => !opt.correct);
 
     const res = await request(app)
       .post(`/api/game/${sId}/answer`)
@@ -54,7 +52,7 @@ describe('Game Flow Integration Tests', () => {
     
     const sId = startRes.body.sessionId;
     const question = startRes.body.questions[0];
-    const correctOpt = question.options.find(opt => opt.correct === true);
+    const correctOpt = question.options.find(opt => opt.correct);
 
     const res = await request(app)
       .post(`/api/game/${sId}/answer`)

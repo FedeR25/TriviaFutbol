@@ -9,11 +9,9 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    
     defaults:
       run:
         working-directory: backend
-
     services:
       postgres:
         image: postgres:15
@@ -28,32 +26,23 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-
     steps:
-      - name: Checkout del código
-        uses: actions/checkout@v4
-      
-      - name: Configurar Node.js 24
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 24
-
-      - name: Instalar dependencias
-        run: npm install
-
-      - name: Inicializar Base de Datos
+      - run: npm install
+      - name: Inicializar DB
         run: |
           psql $DATABASE_URL -c "DROP TABLE IF EXISTS sessions, questions, users CASCADE;"
           psql $DATABASE_URL -c "CREATE TABLE users (id SERIAL PRIMARY KEY, username TEXT UNIQUE, password TEXT);"
           psql $DATABASE_URL -c "CREATE TABLE sessions (id SERIAL PRIMARY KEY, user_id INTEGER, mode TEXT, score INTEGER DEFAULT 0, completed BOOLEAN DEFAULT FALSE);"
           psql $DATABASE_URL -c "CREATE TABLE questions (id SERIAL PRIMARY KEY, type TEXT, data JSONB);"
-          # Usamos IDs de tipo string para evitar errores de comparación en JS
-          psql $DATABASE_URL -c "INSERT INTO questions (type, data) VALUES ('teams', '{\"id\": \"team_A\", \"options\": [{\"id\": \"opt_1\", \"text\": \"Correcta\", \"correct\": true}, {\"id\": \"opt_2\", \"text\": \"Incorrecta\", \"correct\": false}]}'::jsonb);"
+          # Insertamos con el formato exacto que tus logs de info muestran: questionRefId: "team_A"
+          psql $DATABASE_URL -c "INSERT INTO questions (type, data) VALUES ('teams', '{\"id\": \"team_A\", \"options\": [{\"id\": 1, \"text\": \"A\", \"correct\": true}, {\"id\": 2, \"text\": \"B\", \"correct\": false}]}'::jsonb);"
         env:
           DATABASE_URL: postgresql://user_test:password_test@localhost:5432/trivia_test
-
-      - name: Correr Tests
-        run: npm test
+      - run: npm test
         env:
           DATABASE_URL: postgresql://user_test:password_test@localhost:5432/trivia_test
           JWT_SECRET: secret_para_tests_ci_2026

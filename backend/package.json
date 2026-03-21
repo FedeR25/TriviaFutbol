@@ -6,10 +6,10 @@
 "scripts": {
     "dev": "nodemon src/index.js",
     "start": "node src/index.js",
-    "test": "jest --verbose --runInBand",
+    "test": "jest --verbose --runInBand --forceExit",
+    "test:coverage": "jest --coverage --runInBand --forceExit",
     "test:unit": "jest src/tests/unit",
     "test:int": "jest src/tests/integration",
-    "test:coverage": "jest --coverage",
     "migrate": "node-pg-migrate up --migrations-dir src/db/migrations",
     "migrate:down": "node-pg-migrate down --migrations-dir src/db/migrations",
     "migrate:create": "node-pg-migrate create --migrations-dir src/db/migrations",

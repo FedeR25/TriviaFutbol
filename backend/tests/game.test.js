@@ -1,6 +1,5 @@
 const request = require('supertest');
 const { app, server } = require('../src/index');
-const { pool } = require('../src/db/client');
 
 describe('Game Flow Integration Tests', () => {
   let authToken;
@@ -65,8 +64,5 @@ describe('Game Flow Integration Tests', () => {
     expect(isCorrect).toBe(true);
   });
 
-  afterAll(async () => {
-    if (pool) await pool.end();
-    if (server) await new Promise((resolve) => server.close(resolve));
-  });
+ 
 });

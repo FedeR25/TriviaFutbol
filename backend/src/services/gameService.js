@@ -2,7 +2,6 @@ const gameRepository = require('../repositories/gameRepository');
 const rankingService = require('./rankingService');
 const logger = require('../utils/logger');
 
-const PENALTY_MS = 5000;
 const MAX_RESPONSE_TIME_MS = 60000;
 
 const gameService = {
@@ -57,7 +56,7 @@ const gameService = {
       answerGiven, isCorrect, responseTimeMs
     );
 
-    const penalty = isCorrect ? 0 : PENALTY_MS;
+    const penalty = isCorrect ? 0 : (5000 + (session.wrong_answers * 3000));
 
     await gameRepository.updateSession(sessionId, {
       correct_answers: session.correct_answers + (isCorrect ? 1 : 0),

@@ -1980,7 +1980,6 @@ const players = [
 { name: 'Zeki Çelik', team_name: 'AS Roma', league: 'Liga Italiana'},
 { name: 'Leonardo Spinazzola', team_name: 'AS Roma', league: 'Liga Italiana'},
 { name: 'Bryan Cristante', team_name: 'AS Roma', league: 'Liga Italiana'},
-{ name: 'Leandro Paredes', team_name: 'AS Roma', league: 'Liga Italiana'},
 { name: 'Lorenzo Pellegrini', team_name: 'AS Roma', league: 'Liga Italiana'},
 { name: 'Houssem Aouar', team_name: 'AS Roma', league: 'Liga Italiana'},
 { name: 'Edoardo Bove', team_name: 'AS Roma', league: 'Liga Italiana'},

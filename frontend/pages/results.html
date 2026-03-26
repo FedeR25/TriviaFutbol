@@ -78,18 +78,6 @@
     const data = JSON.parse(sessionStorage.getItem('lastResult') || '{}');
     if (!data.correctAnswers === undefined) window.location.href = 'index.html';
 
-    const MODE_LABELS = {
-      teams: '🛡️ Equipos',
-      players: '⭐ Jugadores',
-      timed: '⏱️ Contra el Reloj'
-    };
-
-    const DIFF_LABELS = {
-      easy: '🟢 Juveniles',
-      hard: '🔴 Primera División'
-    };
-
-    // Ícono según puntaje
     const pct = data.correctAnswers / (data.correctAnswers + data.wrongAnswers);
     let icon = '😅';
     if (pct >= 0.9) icon = '🏆';
@@ -99,7 +87,6 @@
     document.getElementById('resultIcon').textContent = icon;
     document.getElementById('resultScore').textContent = data.correctAnswers;
 
-    // Stats
     const statsGrid = document.getElementById('statsGrid');
     const stats = [
       { value: data.wrongAnswers, desc: 'Errores', color: 'var(--rojo)' },
@@ -130,7 +117,7 @@
     }
 
     function playAgain() {
-      window.location.href = 'select-difficulty.html';
+      window.location.href = 'select-mode.html';
     }
   </script>
 </body>

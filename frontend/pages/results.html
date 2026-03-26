@@ -112,7 +112,7 @@
 
     if (data.rankingPosition === 1) {
       document.getElementById('rankingBadge').textContent = '🥇 ¡Sos el mejor!';
-    } else if (data.rankingPosition <= 3) {
+    } else if (data.rankingPosition && data.rankingPosition <= 3) {
       document.getElementById('rankingBadge').textContent = `🏅 ¡Top ${data.rankingPosition}!`;
     }
 

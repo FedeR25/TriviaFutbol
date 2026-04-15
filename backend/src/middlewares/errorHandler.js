@@ -14,8 +14,8 @@ const errorHandler = (err, req, res, next) => {
 
   res.status(status).json({
     error: {
-      message: process.env.NODE_ENV === 'production' 
-        ? 'Error interno del servidor' 
+      message: process.env.NODE_ENV === 'production' && status === 500
+        ? 'Error interno del servidor'
         : message,
     }
   });
